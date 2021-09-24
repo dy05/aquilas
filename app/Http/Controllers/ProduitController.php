@@ -16,7 +16,7 @@ class ProduitController extends Controller
     public function index()
     {
 
-        $produites = produit::all()->where('archive', false);
+        $produites = produit::all()->where('active', true);
 
         return view('produit.index', compact('produites'));
     }

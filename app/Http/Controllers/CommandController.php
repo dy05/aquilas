@@ -15,15 +15,15 @@ class CommandController extends Controller
 {
     public function index()
     {
-        $commands = Command::all()->where('archive', false);
+        $commands = Command::all()->where('active', true);
 
         return view('commands.index', compact('commands'));
     }
 
     public function create()
     {
-        $prs= produit::all()->where('archive', false);
-        $cls= client::all()->where('archive', false);
+        $prs= produit::all()->where('active', true);
+        $cls= client::all()->where('active', true);
 
         return view('commands.create', compact('cls', 'prs'));
     }
@@ -55,7 +55,7 @@ class CommandController extends Controller
 
     public function show($id)
     {
-        $mats = materielle::all()->where('archive', false);
+        $mats = materielle::all()->where('active', true);
         $command = Command::find($id);
 
         return view('commands.show', compact('command', 'mats'));

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class EntrerController extends Controller
 {
-  
+
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +17,9 @@ class EntrerController extends Controller
      */
     public function index()
     {
-      
-        $entreres = entrer::all()->where('archive', false);
-    
+
+        $entreres = entrer::all()->where('active', true);
+
         return view('entrer.index', compact('entreres'));
     }
 
@@ -30,7 +30,7 @@ class EntrerController extends Controller
      */
     public function create()
     {
-        $mats= materielle::all()->where('archive', false);
+        $mats= materielle::all()->where('active', true);
         return view('entrer.create', compact('mats'));
     }
 
@@ -46,21 +46,21 @@ class EntrerController extends Controller
              'quantite_entrer' => 'required',
              'prix' => 'required',
              'idMaterielle' => 'required',
-           
+
          ]);
-  
+
 
          $prix=$request->prix;
          $idMaterielle=$request->idMaterielle;
         $quantite_entrer=$request->quantite_entrer;
         $total= $quantite_entrer*$prix;
            $user= Auth::user()->id;
-        
-        
 
-       
+
+
+
         $entrer= new entrer();
-         
+
             $entrer->quantite_entrer= $quantite_entrer;
         $entrer->prix=$prix;
           $entrer->date=now();
@@ -74,7 +74,7 @@ class EntrerController extends Controller
         $materielle->save();
 
     //    entrer::create($request->all());
-     
+
         return redirect()->route('entrers.index')
                         ->with('success', ' created successfully.');
     }
@@ -87,7 +87,7 @@ class EntrerController extends Controller
      */
     public function show($id)
     {
-         $mats = materielle::all()->where('archive', false);
+         $mats = materielle::all()->where('active', true);
         $entrer= entrer::find($id);
         return view('entrer.show', compact('entrer', 'mats'));
     }
@@ -120,28 +120,28 @@ class EntrerController extends Controller
              'quantite_entrer' => 'required',
              'prix' => 'required',
              'idMaterielle' => 'required',
-           
+
                ]);
-  
+
 
          $prix=$request->prix;
          $idMaterielle=$request->idMaterielle;
         $quantite_entrer=$request->quantite_entrer;
         $total= $quantite_entrer*$prix;
            $user= Auth::user()->id;
-        
-        
+
+
 
          $entrer= entrer::find($request->id);
-         
+
             $entrer->quantite_entrer= $quantite_entrer;
         $entrer->prix=$prix;
            $entrer->idMaterielle=$idMaterielle;
             $entrer->prix_total=$total;
              $entrer->idUser=$user;
         $entrer->save();
-      
-         
+
+
         return redirect()->route('entrers.index')
                         ->with('success', 'Post updated successfully');
     }
@@ -157,7 +157,7 @@ class EntrerController extends Controller
         $entrer= entrer::find($id);
 
         $entrer->delete();
-    
+
         return redirect()->route('entrers.index')
                         ->with('success', 'Post deleted successfully');
     }

@@ -21,7 +21,7 @@ class CreateSortirsTable extends Migration
              $table->unsignedBigInteger('idUser');
              $table->unsignedBigInteger('idProduit');
              $table->unsignedBigInteger('idMaterielle');
-              $table->boolean('archive')->default(0);
+              $table->boolean('active')->default(0);
             $table->timestamps();
             $table->foreign('iduser')
                     ->references('id')

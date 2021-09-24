@@ -21,7 +21,7 @@ class CreateEntrersTable extends Migration
             $table->integer('prix_total');
             $table->unsignedBigInteger('idUser');
              $table->unsignedBigInteger('idMaterielle');
-              $table->boolean('archive')->default(0);
+              $table->boolean('active')->default(0);
             $table->timestamps();
             $table->foreign('iduser')
                     ->references('id')
@@ -33,7 +33,7 @@ class CreateEntrersTable extends Migration
                     ->on('materielles')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-       
+
         });
     }
 

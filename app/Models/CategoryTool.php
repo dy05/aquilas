@@ -11,6 +11,6 @@ class CategoryTool extends Model
 
     protected $fillable = [
         'name',
-        'archive',
+        'active',
     ];
 }

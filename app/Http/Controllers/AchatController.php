@@ -19,7 +19,7 @@ class AchatController extends Controller
     public function index()
     {
 
-        $achates = achat::all()->where('archive', false);
+        $achates = achat::all()->where('active', true);
 
         return view('achat.index', compact('achates'));
     }
@@ -31,7 +31,7 @@ class AchatController extends Controller
      */
     public function create()
     {
-        $prs= Command::all()->where('archive', false);
+        $prs= Command::all()->where('active', true);
         $user= Auth::user()->id;
         return view('achat.create', compact('cls', 'prs'));
     }
@@ -86,7 +86,7 @@ class AchatController extends Controller
      */
     public function show($id)
     {
-         $mats = materielle::all()->where('archive', false);
+         $mats = materielle::all()->where('active', true);
         $achat= achat::find($id);
         return view('achat.show', compact('achat', 'mats'));
     }

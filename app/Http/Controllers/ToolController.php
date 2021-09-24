@@ -17,7 +17,7 @@ class ToolController extends Controller
     public function index()
     {
 
-        $materiellees = materielle::all()->where('archive', false);
+        $materiellees = materielle::all()->where('active', true);
 
         return view('materielle.index', compact('materiellees'));
     }

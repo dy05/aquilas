@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
 
-        $clientes = client::all()->where('archive', false);
+        $clientes = client::all()->where('active', true);
 
         return view('client.index', compact('clientes'));
     }

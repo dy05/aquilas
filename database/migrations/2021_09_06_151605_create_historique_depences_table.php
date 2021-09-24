@@ -19,8 +19,8 @@ class CreateHistoriqueDepencesTable extends Migration
             $table->integer('prix');
             $table->timestamps();
             $table->unsignedBigInteger('idUsers');
-              $table->boolean('archive')->default(0);
-           
+              $table->boolean('active')->default(1);
+
             $table->foreign('idUsers')
                     ->references('id')
                     ->on('Users')

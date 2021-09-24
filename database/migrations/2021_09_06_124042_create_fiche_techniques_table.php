@@ -25,7 +25,7 @@ class CreateFicheTechniquesTable extends Migration
              $table->integer('jumbalong')->nullable();
               $table->integer('jumbalarg')->nullable();
              $table->unsignedBigInteger('idProduit');
-              $table->boolean('archive')->default(0);
+              $table->boolean('active')->default(0);
               $table->unsignedBigInteger('idMaterielle');
             $table->timestamps();
             $table->foreign('idProduit')
