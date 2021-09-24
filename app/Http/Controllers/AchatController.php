@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\achat;
-use App\Models\commande;
+use App\Models\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AchatController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -18,10 +18,10 @@ class AchatController extends Controller
      */
     public function index()
     {
-      
-        $achates = achat::all()->where('archive',false);
-    
-        return view('achat.index',compact('achates'));
+
+        $achates = achat::all()->where('archive', false);
+
+        return view('achat.index', compact('achates'));
     }
 
     /**
@@ -31,9 +31,9 @@ class AchatController extends Controller
      */
     public function create()
     {
-       $prs= commande::all()->where('archive',false);
-       $user= Auth::user()->id;
-        return view('achat.create',compact('cls','prs'));
+        $prs= Command::all()->where('archive', false);
+        $user= Auth::user()->id;
+        return view('achat.create', compact('cls', 'prs'));
     }
 
     /**
@@ -51,33 +51,32 @@ class AchatController extends Controller
              'verse' => 'required',
              'reste' => 'required',
              'idUser' => 'required',
-             'idCommande' => 'required',
-    
-             
-           
-           
-        ]);
-    
+             'idCommand' => 'required',
 
-       
+
+
+
+         ]);
+
+
+
         $achat= new achat();
-         
-        $achat->numero_bon_achat=time(); 
+
+        $achat->numero_bon_achat=time();
           $achat->date=now();
             $achat->idProduit=$request->idProduit;
              $achat->idClient=$request->idClient;
              $achat->produit=$request->produit;
-             
-     $achat->save();
 
- 
+        $achat->save();
+
+
 
     //    achat::create($request->all());
-     
+
         return redirect()->route('achats.index')
-                        ->with('success',' created successfully.');
-    
-   }
+                        ->with('success', ' created successfully.');
+    }
 
     /**
      * Display the specified resource.
@@ -87,9 +86,9 @@ class AchatController extends Controller
      */
     public function show($id)
     {
-         $mats = materielle::all()->where('archive',false);
+         $mats = materielle::all()->where('archive', false);
         $achat= achat::find($id);
-        return view('achat.show',compact('achat','mats'));
+        return view('achat.show', compact('achat', 'mats'));
     }
 
     /**
@@ -105,8 +104,8 @@ class AchatController extends Controller
         $prs = produit::all();
         $cl = client::find($achat->idProduit);
          $cls = client::all();
-         
-        return view('achat.edit',compact('achat','pr', 'prs','cl', 'cls'));
+
+        return view('achat.edit', compact('achat', 'pr', 'prs', 'cl', 'cls'));
     }
 
     /**
@@ -122,13 +121,13 @@ class AchatController extends Controller
             $request->validate([
              'produit' => 'required',
              'idClient' => 'required',
-           
-           
-        ]);
 
-       
+
+            ]);
+
+
          $achat= achat::find($request->id);
-         
+
         $achat->numero_bon_achat=time();
           $achat->date=now();
             $achat->idProduit=$request->idProduit;
@@ -136,12 +135,11 @@ class AchatController extends Controller
              // a verifier
                           $achat->produit=$request->produit;
 
-     $achat->save();     
-         
-        return redirect()->route('achats.index')
-                        ->with('success','Post updated successfully');
+        $achat->save();
 
-  }
+        return redirect()->route('achats.index')
+                        ->with('success', 'Post updated successfully');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -154,17 +152,17 @@ class AchatController extends Controller
         $achat= achat::find($id);
 
         $achat->delete();
-    
+
         return redirect()->route('achats.index')
-                        ->with('success','Post deleted successfully');
+                        ->with('success', 'Post deleted successfully');
     }
 
- public function termine($id)
+    public function termine($id)
     {
         $achat= achat::find($id);
         $achat->termine=1;
-           $achat->save();     
+           $achat->save();
         return redirect()->route('achats.index')
-                        ->with('success','termine');
+                        ->with('success', 'termine');
     }
 }

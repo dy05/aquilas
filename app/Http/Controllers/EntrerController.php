@@ -18,9 +18,9 @@ class EntrerController extends Controller
     public function index()
     {
       
-        $entreres = entrer::all()->where('archive',false);
+        $entreres = entrer::all()->where('archive', false);
     
-        return view('entrer.index',compact('entreres'));
+        return view('entrer.index', compact('entreres'));
     }
 
     /**
@@ -30,8 +30,8 @@ class EntrerController extends Controller
      */
     public function create()
     {
-       $mats= materielle::all()->where('archive',false);
-        return view('entrer.create',compact('mats'));
+        $mats= materielle::all()->where('archive', false);
+        return view('entrer.create', compact('mats'));
     }
 
     /**
@@ -47,12 +47,12 @@ class EntrerController extends Controller
              'prix' => 'required',
              'idMaterielle' => 'required',
            
-        ]);
+         ]);
   
 
          $prix=$request->prix;
          $idMaterielle=$request->idMaterielle;
-    $quantite_entrer=$request->quantite_entrer;
+        $quantite_entrer=$request->quantite_entrer;
         $total= $quantite_entrer*$prix;
            $user= Auth::user()->id;
         
@@ -67,18 +67,17 @@ class EntrerController extends Controller
            $entrer->idMaterielle=$idMaterielle;
             $entrer->prix_total=$total;
              $entrer->idUser=$user;
-     $entrer->save();
+        $entrer->save();
 
-     $materielle= materielle::find($idMaterielle);
-     $materielle->quantite=$materielle->quantite+$quantite_entrer;
-     $materielle->save();
+        $materielle= materielle::find($idMaterielle);
+        $materielle->quantite=$materielle->quantite+$quantite_entrer;
+        $materielle->save();
 
     //    entrer::create($request->all());
      
         return redirect()->route('entrers.index')
-                        ->with('success',' created successfully.');
-    
-   }
+                        ->with('success', ' created successfully.');
+    }
 
     /**
      * Display the specified resource.
@@ -88,9 +87,9 @@ class EntrerController extends Controller
      */
     public function show($id)
     {
-         $mats = materielle::all()->where('archive',false);
+         $mats = materielle::all()->where('archive', false);
         $entrer= entrer::find($id);
-        return view('entrer.show',compact('entrer','mats'));
+        return view('entrer.show', compact('entrer', 'mats'));
     }
 
     /**
@@ -104,7 +103,7 @@ class EntrerController extends Controller
         $entrer= entrer::find($id);
         $mat= materielle::find($entrer->idMaterielle);
         $mats = materielle::all();
-        return view('entrer.edit',compact('entrer','mat', 'mats'));
+        return view('entrer.edit', compact('entrer', 'mat', 'mats'));
     }
 
     /**
@@ -122,12 +121,12 @@ class EntrerController extends Controller
              'prix' => 'required',
              'idMaterielle' => 'required',
            
-        ]);
+               ]);
   
 
          $prix=$request->prix;
          $idMaterielle=$request->idMaterielle;
-    $quantite_entrer=$request->quantite_entrer;
+        $quantite_entrer=$request->quantite_entrer;
         $total= $quantite_entrer*$prix;
            $user= Auth::user()->id;
         
@@ -140,13 +139,12 @@ class EntrerController extends Controller
            $entrer->idMaterielle=$idMaterielle;
             $entrer->prix_total=$total;
              $entrer->idUser=$user;
-     $entrer->save();
+        $entrer->save();
       
          
         return redirect()->route('entrers.index')
-                        ->with('success','Post updated successfully');
-
-  }
+                        ->with('success', 'Post updated successfully');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -161,6 +159,6 @@ class EntrerController extends Controller
         $entrer->delete();
     
         return redirect()->route('entrers.index')
-                        ->with('success','Post deleted successfully');
+                        ->with('success', 'Post deleted successfully');
     }
 }

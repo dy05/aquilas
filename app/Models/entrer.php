@@ -13,14 +13,17 @@ class entrer extends Model
         'quantite_entrer',
           'prix',
          'prix_total',
-    ];
-      public function Getuser(){
-         return $this->belongsTo(User::class, 'idUser','id' );
-     } 
-     public function Getproduit(){
-         return $this->belongsTo(produit::class, 'idProduit','id' );
-     } 
-     public function GetMaterielle(){
-         return $this->belongsTo(materielle::class, 'idMaterielle','id' );
-     } 
+                      ];
+                      public function Getuser()
+                      {
+                          return $this->belongsTo(User::class, 'idUser', 'id');
+                      }
+                      public function Getproduit()
+                      {
+                          return $this->belongsTo(produit::class, 'idProduit', 'id');
+                      }
+                      public function GetMaterielle()
+                      {
+                          return $this->belongsTo(materielle::class, 'idMaterielle', 'id');
+                      }
 }

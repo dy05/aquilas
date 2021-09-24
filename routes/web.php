@@ -1,31 +1,19 @@
 <?php
 
-use App\Models\equipement;
+use App\Http\Controllers\CommandController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ToolController;
+use App\Models\Equipement;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClientController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //  equipement
 Route::get('/equipement', [App\Http\Controllers\EquipementController::class, 'index'])->name('equipements.index');
 Route::get('/equipement/create', [App\Http\Controllers\EquipementController::class, 'create'])->name('equipements.create');
@@ -64,25 +52,25 @@ Route::put('/produit/update', [App\Http\Controllers\Produitcontroller::class, 'u
 Route::delete('/produit/destroy/{id}', [App\Http\Controllers\Produitcontroller::class, 'destroy'])->name('produits.destroy');
 
 //materielle
-Route::get('/materielle', [App\Http\Controllers\MaterielleController::class, 'index'])->name('materielles.index');
-Route::get('/materielle/create', [App\Http\Controllers\MaterielleController::class, 'create'])->name('materielles.create');
-Route::post('/materielle/store', [App\Http\Controllers\MaterielleController::class, 'store'])->name('materielles.store');
-Route::get('/materielle/show/{id}', [App\Http\Controllers\MaterielleController::class, 'show'])->name('materielles.show');
-Route::get('/materielle/edit/{id}', [App\Http\Controllers\MaterielleController::class, 'edit'])->name('materielles.edit');
-Route::put('/materielle/update', [App\Http\Controllers\MaterielleController::class, 'update'])->name('materielles.update');
-Route::delete('/materielle/destroy/{id}', [App\Http\Controllers\MaterielleController::class, 'destroy'])->name('materielles.destroy');
+Route::get('/tools', [ToolController::class, 'index'])->name('tools.index');
+Route::get('/tools/create', [ToolController::class, 'create'])->name('tools.create');
+Route::post('/tools/store', [ToolController::class, 'store'])->name('tools.store');
+Route::get('/tools/{tool}', [ToolController::class, 'show'])->name('tools.show');
+Route::get('/tools/{tool}/edit', [ToolController::class, 'edit'])->name('tools.edit');
+Route::put('/tools/{tool}', [ToolController::class, 'update'])->name('tools.update');
+Route::delete('/tools/{tool}', [ToolController::class, 'destroy'])->name('tools.destroy');
 
 // client
-Route::get('/client', [App\Http\Controllers\ClientController::class, 'index'])->name('clients.index');
-Route::get('/client/create', [App\Http\Controllers\ClientController::class, 'create'])->name('clients.create');
-Route::post('/client/store', [App\Http\Controllers\ClientController::class, 'store'])->name('clients.store');
-Route::get('/client/show/{id}', [App\Http\Controllers\ClientController::class, 'show'])->name('clients.show');
-Route::get('/client/edit/{id}', [App\Http\Controllers\ClientController::class, 'edit'])->name('clients.edit');
-Route::put('/client/update', [App\Http\Controllers\ClientController::class, 'update'])->name('clients.update');
-Route::delete('/client/destroy/{id}', [App\Http\Controllers\ClientController::class, 'destroy'])->name('clients.destroy');
+Route::get('/client', [App\Http\Controllers\CustomerController::class, 'index'])->name('clients.index');
+Route::get('/client/create', [App\Http\Controllers\CustomerController::class, 'create'])->name('clients.create');
+Route::post('/client/store', [App\Http\Controllers\CustomerController::class, 'store'])->name('clients.store');
+Route::get('/client/show/{id}', [App\Http\Controllers\CustomerController::class, 'show'])->name('clients.show');
+Route::get('/client/edit/{id}', [App\Http\Controllers\CustomerController::class, 'edit'])->name('clients.edit');
+Route::put('/client/update', [App\Http\Controllers\CustomerController::class, 'update'])->name('clients.update');
+Route::delete('/client/destroy/{id}', [App\Http\Controllers\CustomerController::class, 'destroy'])->name('clients.destroy');
 
 
-//commande
+//command
 Route::get('/entrer', [App\Http\Controllers\EntrerController::class, 'index'])->name('entrers.index');
 Route::get('/entrer/create', [App\Http\Controllers\EntrerController::class, 'create'])->name('entrers.create');
 Route::post('/entrer/store', [App\Http\Controllers\EntrerController::class, 'store'])->name('entrers.store');
@@ -91,13 +79,12 @@ Route::get('/entrer/edit/{id}', [App\Http\Controllers\EntrerController::class, '
 Route::put('/entrer/update', [App\Http\Controllers\EntrerController::class, 'update'])->name('entrers.update');
 Route::delete('/entrer/destroy/{id}', [App\Http\Controllers\EntrerController::class, 'destroy'])->name('entrers.destroy');
 
-
 //command
-Route::get('/commande', [App\Http\Controllers\CommandeController::class, 'index'])->name('commandes.index');
-Route::get('/commande/create', [App\Http\Controllers\CommandeController::class, 'create'])->name('commandes.create');
-Route::post('/commande/store', [App\Http\Controllers\CommandeController::class, 'store'])->name('commandes.store');
-Route::get('/commande/show/{id}', [App\Http\Controllers\CommandeController::class, 'show'])->name('commandes.show');
-Route::get('/commande/edit/{id}', [App\Http\Controllers\CommandeController::class, 'edit'])->name('commandes.edit');
-Route::put('/commande/update', [App\Http\Controllers\CommandeController::class, 'update'])->name('commandes.update');
-Route::delete('/commande/destroy/{id}', [App\Http\Controllers\EntrerController::class, 'destroy'])->name('commandes.destroy');
-Route::get('/commande/termine/{id}', [App\Http\Controllers\EntrerController::class, 'termine'])->name('commandes.termine');
+Route::get('/commands', [CommandController::class, 'index'])->name('commands.index');
+Route::get('/commands/create', [CommandController::class, 'create'])->name('commands.create');
+Route::post('/commands/store', [CommandController::class, 'store'])->name('commands.store');
+Route::get('/commands/{command}', [CommandController::class, 'show'])->name('commands.show');
+Route::get('/commands/{command}/edit', [CommandController::class, 'edit'])->name('commands.edit');
+Route::put('/commands/{command}', [CommandController::class, 'update'])->name('commands.update');
+Route::delete('/commands/{command}', [CommandController::class, 'destroy'])->name('commands.destroy');
+Route::get('/commands/termine/{id}', [CommandController::class, 'termine'])->name('commands.termine');

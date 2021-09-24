@@ -16,12 +16,14 @@ class facture extends Model
          'prix_unitaire',
          'montant',
          'montant_total',
-    ];
+                     ];
 
-        public function Getuser(){
-         return $this->belongsTo(User::class, 'idUser','id' );
-     } 
-         public function GetAchat(){
-         return $this->belongsTo(achat::class, 'idAchat','id' );
-     } 
+                     public function Getuser()
+                     {
+                         return $this->belongsTo(User::class, 'idUser', 'id');
+                     }
+                     public function GetAchat()
+                     {
+                         return $this->belongsTo(achat::class, 'idAchat', 'id');
+                     }
 }

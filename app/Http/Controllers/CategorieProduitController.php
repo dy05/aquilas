@@ -14,10 +14,10 @@ class CategorieProduitController extends Controller
      */
     public function index()
     {
-      
+
         $categorie_produites = categorie_produit::all();
-    
-        return view('categorie_produit.index',compact('categorie_produites'));
+
+        return view('categorie_produit.index', compact('categorie_produites'));
     }
 
     /**
@@ -39,29 +39,27 @@ class CategorieProduitController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-             'nom' => 'required',
-         
-           
-        ]);
-  
+             'name' => 'required',
 
-  
+
+         ]);
+
+
+
          $nom=$request->nom;
          $description=$request->description;
-       
+
         $categorie_produit= new categorie_produit();
         $categorie_produit->nom=$nom;
          $categorie_produit->description=$description;
-        
-     $categorie_produit->save();
+
+        $categorie_produit->save();
 
     //    categorie_produit::create($request->all());
-     
-        return redirect()->route('categorie_produits.index')
-                        ->with('success',' created successfully.');
-    
 
-     }
+        return redirect()->route('categorie_produits.index')
+                        ->with('success', ' created successfully.');
+    }
 
     /**
      * Display the specified resource.
@@ -72,7 +70,7 @@ class CategorieProduitController extends Controller
     public function show($id)
     {
         $categorie_produit= categorie_produit::find($id);
-        return view('categorie_produit.show',compact('categorie_produit'));
+        return view('categorie_produit.show', compact('categorie_produit'));
     }
 
     /**
@@ -82,8 +80,9 @@ class CategorieProduitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {$categorie_produit= categorie_produit::find($id);
-        return view('categorie_produit.edit',compact('categorie_produit'));
+    {
+        $categorie_produit= categorie_produit::find($id);
+        return view('categorie_produit.edit', compact('categorie_produit'));
     }
 
     /**
@@ -96,25 +95,24 @@ class CategorieProduitController extends Controller
     public function update(Request $request)
     {
          $request->validate([
-               'nom' => 'required',
-   
+               'name' => 'required',
+
          ]);
 
-   $nom=$request->nom;
+        $nom=$request->nom;
          $description=$request->description;
-       
+
         $categorie_produit=categorie_produit::find($request->id);
         $categorie_produit->nom=$nom;
          $categorie_produit->description=$description;
-        
-     $categorie_produit->save();
+
+        $categorie_produit->save();
 
     //    categorie_produit::create($request->all());
-     
+
         return redirect()->route('categorie_produits.index')
-                        ->with('success','Post updated successfully');
-    
-}
+                        ->with('success', 'Post updated successfully');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -127,8 +125,8 @@ class CategorieProduitController extends Controller
         $categorie_produit= categorie_produit::find($id);
 
         $categorie_produit->delete();
-    
+
         return redirect()->route('categorie_produits.index')
-                        ->with('success','Post deleted successfully');
+                        ->with('success', 'Post deleted successfully');
     }
 }

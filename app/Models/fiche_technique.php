@@ -20,10 +20,12 @@ class fiche_technique extends Model
               'jumbalarg',
              'idProduit',];
 
-     public function Getproduit(){
-         return $this->belongsTo(produit::class, 'idProduit','id' );
-     } 
-      public function materielle(){
-         return $this->belongsTo(materielle::class, 'idMaterielle','id' );
-     } 
+     public function Getproduit()
+     {
+         return $this->belongsTo(produit::class, 'idProduit', 'id');
+     }
+     public function materielle()
+     {
+         return $this->belongsTo(materielle::class, 'idMaterielle', 'id');
+     }
 }

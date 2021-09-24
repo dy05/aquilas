@@ -15,10 +15,10 @@ class ProduitController extends Controller
      */
     public function index()
     {
-      
-        $produites = produit::all()->where('archive',false);
-    
-        return view('produit.index',compact('produites'));
+
+        $produites = produit::all()->where('archive', false);
+
+        return view('produit.index', compact('produites'));
     }
 
     /**
@@ -29,7 +29,7 @@ class ProduitController extends Controller
     public function create()
     {
         $cats = categorie_produit::all();
-        return view('produit.create',compact('cats'));
+        return view('produit.create', compact('cats'));
     }
 
     /**
@@ -41,68 +41,65 @@ class ProduitController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-             'nom' => 'required',
+             'name' => 'required',
          'prix_unitaire'=> 'required',
          'photo'=> 'required',
-           
-        ]);
-  
-if($request->file('photo'))
-{
- $photo=$request->file('photo');
-    //  
-        $photoName=time().'.'.$photo->extension();
-        $photo->move(public_path('img'),$photoName);
 
-      //  dd($photo);
-  
-         $nom=$request->nom;
-         $description=$request->description;
-         $prix_unitaire=$request->prix_unitaire;
-        $idCategorie=$request->idCategorie;
-        
-        
-        
+         ]);
 
-       
-        $produit= new produit();
-        $produit->nom=$nom;
-          $produit->idCategorie=$idCategorie;
-           $produit->description=$description;
+        if ($request->file('photo')) {
+            $photo=$request->file('photo');
+            //
+                $photoName=time().'.'.$photo->extension();
+                $photo->move(public_path('img'), $photoName);
+
+              //  dd($photo);
+
+                 $nom=$request->nom;
+                 $description=$request->description;
+                 $prix_unitaire=$request->prix_unitaire;
+                $idCategorie=$request->idCategorie;
+
+
+
+
+
+                $produit= new produit();
+                $produit->nom=$nom;
+                  $produit->idCategorie=$idCategorie;
+                   $produit->description=$description;
             $produit->prix_unitaire=$prix_unitaire;
              $produit->photo=$photoName;
-     $produit->save();
+             $produit->save();
 
-    //    produit::create($request->all());
-     
-        return redirect()->route('produits.index')
-                        ->with('success',' created successfully.');
-    
-}
-else{
-         $nom=$request->nom;
-         $description=$request->description;
-         $prix_unitaire=$request->prix_unitaire;
-        $idCategorie=$request->idCategorie;
-        
-        
-        
+            //    produit::create($request->all());
 
-       
-        $produit= new produit();
-        $produit->nom=$nom;
-          $produit->idCategorie=$idCategorie;
-           $produit->description=$description;
+                return redirect()->route('produits.index')
+                        ->with('success', ' created successfully.');
+        } else {
+                 $nom=$request->nom;
+                 $description=$request->description;
+                 $prix_unitaire=$request->prix_unitaire;
+                $idCategorie=$request->idCategorie;
+
+
+
+
+
+                $produit= new produit();
+                $produit->nom=$nom;
+                  $produit->idCategorie=$idCategorie;
+                   $produit->description=$description;
             $produit->prix_unitaire=$prix_unitaire;
              $produit->photo="a.png";
-     $produit->save();
+             $produit->save();
 
-    //    produit::create($request->all());
-     
-        return redirect()->route('produits.index')
-                        ->with('success',' created successfully.');
-}
-     }
+            //    produit::create($request->all());
+
+                return redirect()->route('produits.index')
+                        ->with('success', ' created successfully.');
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -114,7 +111,7 @@ else{
     {
          $cats = categorie_produit::all();
         $produit= produit::find($id);
-        return view('produit.show',compact('produit','cats'));
+        return view('produit.show', compact('produit', 'cats'));
     }
 
     /**
@@ -127,7 +124,7 @@ else{
     {
         $produit= produit::find($id);
         $cats = categorie_produit::all();
-        return view('produit.edit',compact('produit', 'cats'));
+        return view('produit.edit', compact('produit', 'cats'));
     }
 
     /**
@@ -140,65 +137,62 @@ else{
     public function update(Request $request)
     {
          $request->validate([
-               'nom' => 'required',
-        
+               'name' => 'required',
+
          ]);
- 
-if($request->file('photo'))
-{
- $photo=$request->file('photo');
-    //  
-        $photoName=time().'.'.$photo->extension();
-        $photo->move(public_path('img'),$photoName);
 
-      //  dd($photo);
-  
-        $nom=$request->nom;
-         $description=$request->description;
-         $prix_unitaire=$request->prix_unitaire;
-        $idCategorie=$request->idCategorie;
-        
-        
-        
+        if ($request->file('photo')) {
+            $photo=$request->file('photo');
+            //
+                $photoName=time().'.'.$photo->extension();
+                $photo->move(public_path('img'), $photoName);
 
-       
-        $produit= produit::find($request->id);
-        $produit->nom=$nom;
-          $produit->idCategorie=$idCategorie;
-           $produit->description=$description;
+              //  dd($photo);
+
+                $nom=$request->nom;
+                 $description=$request->description;
+                 $prix_unitaire=$request->prix_unitaire;
+                $idCategorie=$request->idCategorie;
+
+
+
+
+
+                $produit= produit::find($request->id);
+                $produit->nom=$nom;
+                  $produit->idCategorie=$idCategorie;
+                   $produit->description=$description;
             $produit->prix_unitaire=$prix_unitaire;
              $produit->photo=$photoName;
-     $produit->save();
+             $produit->save();
 
-    //    produit::create($request->all());
-     
-        return redirect()->route('produits.index')
-                        ->with('success','Post updated successfully');
-    
-}
-else{
-        $nom=$request->nom;
-         $description=$request->description;
-         $prix_unitaire=$request->prix_unitaire;
-        $idCategorie=$request->idCategorie;
-        
-        
-        
+            //    produit::create($request->all());
 
-       
-        $produit= produit::find($request->id);
-        $produit->nom=$nom;
-          $produit->idCategorie=$idCategorie;
-           $produit->description=$description;
+                return redirect()->route('produits.index')
+                        ->with('success', 'Post updated successfully');
+        } else {
+                $nom=$request->nom;
+                 $description=$request->description;
+                 $prix_unitaire=$request->prix_unitaire;
+                $idCategorie=$request->idCategorie;
+
+
+
+
+
+                $produit= produit::find($request->id);
+                $produit->nom=$nom;
+                  $produit->idCategorie=$idCategorie;
+                   $produit->description=$description;
             $produit->prix_unitaire=$prix_unitaire;
-           //  $produit->photo="a.png";
-     $produit->save();
-    //    produit::create($request->all());
-     
-        return redirect()->route('produits.index')
-                        ->with('success','Post updated successfully');
-}
-  }
+                   //  $produit->photo="a.png";
+             $produit->save();
+            //    produit::create($request->all());
+
+                return redirect()->route('produits.index')
+                        ->with('success', 'Post updated successfully');
+        }
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -211,8 +205,8 @@ else{
         $produit= produit::find($id);
 
         $produit->delete();
-    
+
         return redirect()->route('produits.index')
-                        ->with('success','Post deleted successfully');
+                        ->with('success', 'Post deleted successfully');
     }
 }

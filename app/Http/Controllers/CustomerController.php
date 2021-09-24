@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\client;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class CustomerController extends Controller
 {
       /**
      * Display a listing of the resource.
@@ -14,10 +14,10 @@ class ClientController extends Controller
      */
     public function index()
     {
-      
-        $clientes = client::all()->where('archive',false);
-    
-        return view('client.index',compact('clientes'));
+
+        $clientes = client::all()->where('archive', false);
+
+        return view('client.index', compact('clientes'));
     }
 
     /**
@@ -27,7 +27,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-      
+
         return view('client.create');
     }
 
@@ -40,39 +40,38 @@ class ClientController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-             'nom' => 'required',
+             'name' => 'required',
                'prenom' => 'required',
                'telephone' => 'required',
                'adress' => 'required',
-           
-        ]);
-  
+
+         ]);
+
 
         $nom=$request->nom;
          $prenom=$request->prenom;
          $telephone=$request->telephone;
         $adress=$request->adress;
-        
-        
-        
 
-       
+
+
+
+
         $client=  new client();
         $client->nom=$nom;
           $client->prenom=$prenom;
            $client->telephone=$telephone;
             $client->adress=$adress;
-           
-     $client->save();
+
+        $client->save();
 
 
 
     //    client::create($request->all());
-     
-        return redirect()->route('clients.index')
-                        ->with('success',' created successfully.');
 
-     }
+        return redirect()->route('clients.index')
+                        ->with('success', ' created successfully.');
+    }
 
     /**
      * Display the specified resource.
@@ -82,9 +81,9 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-   
+
         $client= client::find($id);
-        return view('client.show',compact('client'));
+        return view('client.show', compact('client'));
     }
 
     /**
@@ -96,8 +95,8 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client= client::find($id);
-     
-        return view('client.edit',compact('client'));
+
+        return view('client.edit', compact('client'));
     }
 
     /**
@@ -110,39 +109,37 @@ class ClientController extends Controller
     public function update(Request $request)
     {
          $request->validate([
-               'nom' => 'required',
+               'name' => 'required',
                'prenom' => 'required',
                'telephone' => 'required',
                'adress' => 'required',
-        
+
          ]);
 
 
-  
+
         $nom=$request->nom;
          $prenom=$request->prenom;
          $telephone=$request->telephone;
         $adress=$request->adress;
-        
-        
-        
 
-       
+
+
+
+
         $client= client::find($request->id);
         $client->nom=$nom;
           $client->prenom=$prenom;
            $client->telephone=$telephone;
             $client->adress=$adress;
-           
-     $client->save();
+
+        $client->save();
 
     //    client::create($request->all());
-     
-        return redirect()->route('clients.index')
-                        ->with('success','Post updated successfully');
-    
 
-  }
+        return redirect()->route('clients.index')
+                        ->with('success', 'Post updated successfully');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -155,8 +152,8 @@ class ClientController extends Controller
         $client= client::find($id);
 
         $client->delete();
-    
+
         return redirect()->route('clients.index')
-                        ->with('success','Post deleted successfully');
+                        ->with('success', 'Post deleted successfully');
     }
 }

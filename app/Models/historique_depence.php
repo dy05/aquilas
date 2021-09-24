@@ -12,9 +12,9 @@ class historique_depence extends Model
          'motif',
         'prix',
           
-    ];
-    public function Getusers(){
-         return $this->belongsTo(users::class, 'idUsers','id' );
-     } 
-     
+             ];
+             public function Getusers()
+             {
+                  return $this->belongsTo(users::class, 'idUsers', 'id');
+             }
 }

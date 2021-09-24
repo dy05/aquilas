@@ -7,7 +7,7 @@ use App\Models\categorie_materielle;
 
 class CategorieMaterielleController extends Controller
 {
-  
+
         /**
      * Display a listing of the resource.
      *
@@ -15,10 +15,10 @@ class CategorieMaterielleController extends Controller
      */
     public function index()
     {
-      
+
         $categorie_materiellees = categorie_materielle::all();
-    
-        return view('categorie_materielle.index',compact('categorie_materiellees'));
+
+        return view('categorie_materielle.index', compact('categorie_materiellees'));
     }
 
     /**
@@ -40,29 +40,27 @@ class CategorieMaterielleController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-             'nom' => 'required',
-         
-           
-        ]);
-  
+             'name' => 'required',
 
-  
+
+         ]);
+
+
+
          $nom=$request->nom;
          $description=$request->description;
-       
+
         $categorie_materielle= new categorie_materielle();
         $categorie_materielle->nom=$nom;
          $categorie_materielle->description=$description;
-        
-     $categorie_materielle->save();
+
+        $categorie_materielle->save();
 
     //    categorie_materielle::create($request->all());
-     
-        return redirect()->route('categorie_materielles.index')
-                        ->with('success',' created successfully.');
-    
 
-     }
+        return redirect()->route('categorie_materielles.index')
+                        ->with('success', ' created successfully.');
+    }
 
     /**
      * Display the specified resource.
@@ -73,7 +71,7 @@ class CategorieMaterielleController extends Controller
     public function show($id)
     {
         $categorie_materielle= categorie_materielle::find($id);
-        return view('categorie_materielle.show',compact('categorie_materielle'));
+        return view('categorie_materielle.show', compact('categorie_materielle'));
     }
 
     /**
@@ -83,8 +81,9 @@ class CategorieMaterielleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {$categorie_materielle= categorie_materielle::find($id);
-        return view('categorie_materielle.edit',compact('categorie_materielle'));
+    {
+        $categorie_materielle= categorie_materielle::find($id);
+        return view('categorie_materielle.edit', compact('categorie_materielle'));
     }
 
     /**
@@ -97,25 +96,24 @@ class CategorieMaterielleController extends Controller
     public function update(Request $request)
     {
          $request->validate([
-               'nom' => 'required',
-   
+               'name' => 'required',
+
          ]);
 
-   $nom=$request->nom;
+        $nom=$request->nom;
          $description=$request->description;
-       
+
         $categorie_materielle=categorie_materielle::find($request->id);
         $categorie_materielle->nom=$nom;
          $categorie_materielle->description=$description;
-        
-     $categorie_materielle->save();
+
+        $categorie_materielle->save();
 
     //    categorie_materielle::create($request->all());
-     
+
         return redirect()->route('categorie_materielles.index')
-                        ->with('success','Post updated successfully');
-    
-}
+                        ->with('success', 'Post updated successfully');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -128,8 +126,8 @@ class CategorieMaterielleController extends Controller
         $categorie_materielle= categorie_materielle::find($id);
 
         $categorie_materielle->delete();
-    
+
         return redirect()->route('categorie_materielles.index')
-                        ->with('success','Post deleted successfully');
+                        ->with('success', 'Post deleted successfully');
     }
 }

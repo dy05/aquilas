@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\equipement;
+use App\Models\Equipement;
 use Illuminate\Http\Request;
 use File;
 
 class EquipementController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +16,10 @@ class EquipementController extends Controller
      */
     public function index()
     {
-      
+
         $equipementes = equipement::all();
-    
-        return view('equipement.index',compact('equipementes'));
+
+        return view('equipement.index', compact('equipementes'));
     }
 
     /**
@@ -41,67 +41,64 @@ class EquipementController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-             'nom' => 'required',
+             'name' => 'required',
          'date' => 'required',
-           
-        ]);
-  
-if($request->file('photo'))
-{
- $photo=$request->file('photo');
-    //  
-        $photoName=time().'.'.$photo->extension();
-        $photo->move(public_path('img'),$photoName);
 
-      //  dd($photo);
-  
-         $nom=$request->nom;
-         $couleur=$request->couleur;
-         $marque=$request->marque;
-         $date=$request->date;
-        $detail=$request->detail;
-        
+         ]);
 
-       
-        $equipement= new equipement();
-        $equipement->nom=$nom;
-         $equipement->couleur=$couleur;
-          $equipement->marque=$marque;
-           $equipement->date=$date;
+        if ($request->file('photo')) {
+            $photo=$request->file('photo');
+            //
+                $photoName=time().'.'.$photo->extension();
+                $photo->move(public_path('img'), $photoName);
+
+              //  dd($photo);
+
+                 $nom=$request->nom;
+                 $couleur=$request->couleur;
+                 $marque=$request->marque;
+                 $date=$request->date;
+                $detail=$request->detail;
+
+
+
+                $equipement= new equipement();
+                $equipement->nom=$nom;
+                 $equipement->couleur=$couleur;
+                  $equipement->marque=$marque;
+                   $equipement->date=$date;
             $equipement->detail=$detail;
              $equipement->photo=$photoName;
-     $equipement->save();
+             $equipement->save();
 
-    //    equipement::create($request->all());
-     
-        return redirect()->route('equipements.index')
-                        ->with('success',' created successfully.');
-    
-}
-else{
-        $nom=$request->nom;
-         $couleur=$request->couleur;
-         $marque=$request->marque;
-         $date=$request->date;
-        $detail=$request->detail;
-        
+            //    equipement::create($request->all());
 
-       
-        $equipement= new equipement();
-        $equipement->nom=$nom;
-         $equipement->couleur=$couleur;
-          $equipement->marque=$marque;
-           $equipement->date=$date;
+                return redirect()->route('equipements.index')
+                        ->with('success', ' created successfully.');
+        } else {
+                $nom=$request->nom;
+                 $couleur=$request->couleur;
+                 $marque=$request->marque;
+                 $date=$request->date;
+                $detail=$request->detail;
+
+
+
+                $equipement= new equipement();
+                $equipement->nom=$nom;
+                 $equipement->couleur=$couleur;
+                  $equipement->marque=$marque;
+                   $equipement->date=$date;
             $equipement->detail=$detail;
              $equipement->photo="a.png";
-     $equipement->save();
+             $equipement->save();
 
-    //    equipement::create($request->all());
-     
-        return redirect()->route('equipements.index')
-                        ->with('success',' created successfully.');
-}
-     }
+            //    equipement::create($request->all());
+
+                return redirect()->route('equipements.index')
+                        ->with('success', ' created successfully.');
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -112,7 +109,7 @@ else{
     public function show($id)
     {
         $equipement= equipement::find($id);
-        return view('equipement.show',compact('equipement'));
+        return view('equipement.show', compact('equipement'));
     }
 
     /**
@@ -122,8 +119,9 @@ else{
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {$equipement= equipement::find($id);
-        return view('equipement.edit',compact('equipement'));
+    {
+        $equipement= equipement::find($id);
+        return view('equipement.edit', compact('equipement'));
     }
 
     /**
@@ -136,65 +134,62 @@ else{
     public function update(Request $request)
     {
          $request->validate([
-               'nom' => 'required',
+               'name' => 'required',
          'date' => 'required',
          ]);
- 
-if($request->file('photo'))
-{
- $photo=$request->file('photo');
-    //  
-        $photoName=time().'.'.$photo->extension();
-        $photo->move(public_path('img'),$photoName);
 
-      //  dd($photo);
-  
-         $nom=$request->nom;
-         $couleur=$request->couleur;
-         $marque=$request->marque;
-         $date=$request->date;
-        $detail=$request->detail;
-        
+        if ($request->file('photo')) {
+            $photo=$request->file('photo');
+            //
+                $photoName=time().'.'.$photo->extension();
+                $photo->move(public_path('img'), $photoName);
 
-       
-        $equipement= equipement::find($request->id);
-        $equipement->nom=$nom;
-         $equipement->couleur=$couleur;
-          $equipement->marque=$marque;
-           $equipement->date=$date;
+              //  dd($photo);
+
+                 $nom=$request->nom;
+                 $couleur=$request->couleur;
+                 $marque=$request->marque;
+                 $date=$request->date;
+                $detail=$request->detail;
+
+
+
+                $equipement= equipement::find($request->id);
+                $equipement->nom=$nom;
+                 $equipement->couleur=$couleur;
+                  $equipement->marque=$marque;
+                   $equipement->date=$date;
             $equipement->detail=$detail;
              $equipement->photo=$photoName;
-     $equipement->save();
+             $equipement->save();
 
-    //    equipement::create($request->all());
-     
-        return redirect()->route('equipements.index')
-                        ->with('success','Post updated successfully');
-    
-}
-else{
-        $nom=$request->nom;
-         $couleur=$request->couleur;
-         $marque=$request->marque;
-         $date=$request->date;
-        $detail=$request->detail;
-        
+            //    equipement::create($request->all());
 
-       
-        $equipement=  equipement::find($request->id);
-        $equipement->nom=$nom;
-         $equipement->couleur=$couleur;
-          $equipement->marque=$marque;
-           $equipement->date=$date;
+                return redirect()->route('equipements.index')
+                        ->with('success', 'Post updated successfully');
+        } else {
+                $nom=$request->nom;
+                 $couleur=$request->couleur;
+                 $marque=$request->marque;
+                 $date=$request->date;
+                $detail=$request->detail;
+
+
+
+                $equipement=  equipement::find($request->id);
+                $equipement->nom=$nom;
+                 $equipement->couleur=$couleur;
+                  $equipement->marque=$marque;
+                   $equipement->date=$date;
             $equipement->detail=$detail;
-           //  $equipement->photo="a.png";
-     $equipement->save();
+                   //  $equipement->photo="a.png";
+             $equipement->save();
 
-    //    equipement::create($request->all());
-     
-        return redirect()->route('equipements.index')
-                        ->with('success','Post updated successfully');
-}
+            //    equipement::create($request->all());
+
+                return redirect()->route('equipements.index')
+                        ->with('success', 'Post updated successfully');
+        }
 
 
     //      $nom=$request->nom;
@@ -203,9 +198,9 @@ else{
     //      $date=$request->date;
     //         $detail=$request->detail;
     //            $photo=$request->photo;
-        
 
-       
+
+
     //     $equipement= equipement::find($request->id);
     //     $equipement->nom=$nom;
     //      $equipement->couleur=$couleur;
@@ -215,7 +210,7 @@ else{
     //          $equipement->date=$photo;
     //  $equipement->save();
     //    // $equipement->update($request->all());
-    
+
     //     return redirect()->route('equipements.index')
     //                     ->with('success','Post updated successfully');
     }
@@ -231,8 +226,8 @@ else{
         $equipement= equipement::find($id);
 
         $equipement->delete();
-    
+
         return redirect()->route('equipements.index')
-                        ->with('success','Post deleted successfully');
+                        ->with('success', 'Post deleted successfully');
     }
 }

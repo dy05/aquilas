@@ -13,16 +13,15 @@ class CreatePrixesTable extends Migration
      */
     public function up()
     {
-        Schema::create('prixes', function (Blueprint $table) {
+        Schema::create('prices', function (Blueprint $table) {
             $table->id();
-             $table->integer('prix');
-            $table->unsignedBigInteger('idProduit');
+            $table->decimal('amount');
+            $table->boolean('active')->default(1);
             $table->timestamps();
-             $table->foreign('idProduit')
-                    ->references('id')
-                    ->on('produits')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
+            $table->foreignId('product_id')
+                ->constrained('produits')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -33,6 +32,6 @@ class CreatePrixesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prixes');
+        Schema::dropIfExists('prices');
     }
 }

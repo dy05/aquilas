@@ -15,12 +15,14 @@ class contrat extends Model
         'numero',
           'date',
          'montant',
-    ];
+                  ];
 
-         public function Getproduit(){
-         return $this->belongsTo(produit::class, 'idProduit','id' );
-     } 
-          public function Getclient(){
-         return $this->belongsTo(client::class, 'idClient','id' );
-     } 
+                  public function Getproduit()
+                  {
+                      return $this->belongsTo(produit::class, 'idProduit', 'id');
+                  }
+                  public function Getclient()
+                  {
+                      return $this->belongsTo(client::class, 'idClient', 'id');
+                  }
 }
