@@ -17,6 +17,9 @@ Route::get('/', [AppController::class, 'index'])->name('home');
 Route::get('/contact', [AppController::class, 'contact'])->name('contact');
 Auth::routes();
 
+// Auth routes
+Route::post('/order/{id}', [AppController::class, 'command'])->name('order');
+
 // products
 Route::group(['prefix' => 'product_categories', 'as' => 'product_categories.'], function () {
     Route::get('/', [ProductCategoryController::class, 'index'])->name('index');
