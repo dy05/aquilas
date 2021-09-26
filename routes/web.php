@@ -18,6 +18,7 @@ Route::get('/contact', [AppController::class, 'contact'])->name('contact');
 Auth::routes();
 
 // Auth routes
+Route::get('/order/{id}', [AppController::class, 'command'])->name('order');
 Route::post('/order/{id}', [AppController::class, 'command'])->name('order');
 
 // products
