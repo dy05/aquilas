@@ -22,10 +22,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>ajouter equipement</h2>
+            <h2>ajouter equipment</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('equipements.index') }}"> retour</a>
+            <a class="btn btn-primary" href="{{ route('equipments.index') }}"> retour</a>
         </div>
     </div>
 </div>
@@ -41,7 +41,7 @@
     </div>
 @endif
 
-<form action="{{ route('equipements.store') }}" method="POST"enctype="multipart/form-data">
+<form action="{{ route('equipments.store') }}" method="POST"enctype="multipart/form-data">
     @csrf
 
      <div class="row container ml-5">

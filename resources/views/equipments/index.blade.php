@@ -4,10 +4,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>ajouter equipement</h2>
+            <h2>ajouter equipment</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('equipements.create') }}"> ajouter</a>
+            <a class="btn btn-primary" href="{{ route('equipments.create') }}"> ajouter</a>
         </div>
     </div>
 </div>
@@ -29,22 +29,22 @@
                 <th>date</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($equipementes as $equipement)
+        @foreach ($equipments as $equipment)
         <tr>
-            <td>{{$equipement->id }}</td>
-            <td>{{ $equipement->nom }}</td>
-            <td>{{ $equipement->color  }}</td>
-            <td>{{ $equipement->marque }}</td>
-            <td>{{ $equipement->detail }}</td>
+            <td>{{$equipment->id }}</td>
+            <td>{{ $equipment->nom }}</td>
+            <td>{{ $equipment->color  }}</td>
+            <td>{{ $equipment->marque }}</td>
+            <td>{{ $equipment->detail }}</td>
              <td>
-             <img src="{{ asset('img')}}/{{ $equipement->photo }}" style="max-width:130px;margin-top: 20px" alt="">
+             <img src="{{ asset('img')}}/{{ $equipment->photo }}" style="max-width:130px;margin-top: 20px" alt="">
              </td>
-              <td>{{ $equipement->date }}</td>
+              <td>{{ $equipment->date }}</td>
             <!-- <td> \Str::limit($value->description, 100) </td> -->
             <td>
-                <form action="/equipement/destroy/{{$equipement->id}}" method="POST">
-                    <a class="btn btn-info" href="/equipement/show/{{$equipement->id}}">Show</a>
-                    <a class="btn btn-primary" href="/equipement/edit/{{$equipement->id}}">Edit</a>
+                <form action="/equipment/destroy/{{$equipment->id}}" method="POST">
+                    <a class="btn btn-info" href="/equipment/show/{{$equipment->id}}">Show</a>
+                    <a class="btn btn-primary" href="/equipment/edit/{{$equipment->id}}">Edit</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
