@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipement;
+use App\Models\Equipment;
 use Illuminate\Http\Request;
 use File;
 
@@ -17,7 +17,7 @@ class EquipementController extends Controller
     public function index()
     {
 
-        $equipementes = equipement::all();
+        $equipementes = Equipment::all();
 
         return view('equipement.index', compact('equipementes'));
     }
@@ -55,16 +55,16 @@ class EquipementController extends Controller
               //  dd($photo);
 
                  $nom=$request->nom;
-                 $couleur=$request->couleur;
+                 $color=$request->color;
                  $marque=$request->marque;
                  $date=$request->date;
                 $detail=$request->detail;
 
 
 
-                $equipement= new equipement();
+                $equipement= new Equipment();
                 $equipement->nom=$nom;
-                 $equipement->couleur=$couleur;
+                 $equipement->color=$color;
                   $equipement->marque=$marque;
                    $equipement->date=$date;
             $equipement->detail=$detail;
@@ -77,16 +77,16 @@ class EquipementController extends Controller
                         ->with('success', ' created successfully.');
         } else {
                 $nom=$request->nom;
-                 $couleur=$request->couleur;
+                 $color=$request->color;
                  $marque=$request->marque;
                  $date=$request->date;
                 $detail=$request->detail;
 
 
 
-                $equipement= new equipement();
+                $equipement= new Equipment();
                 $equipement->nom=$nom;
-                 $equipement->couleur=$couleur;
+                 $equipement->color=$color;
                   $equipement->marque=$marque;
                    $equipement->date=$date;
             $equipement->detail=$detail;
@@ -108,7 +108,7 @@ class EquipementController extends Controller
      */
     public function show($id)
     {
-        $equipement= equipement::find($id);
+        $equipement= Equipment::find($id);
         return view('equipement.show', compact('equipement'));
     }
 
@@ -120,7 +120,7 @@ class EquipementController extends Controller
      */
     public function edit($id)
     {
-        $equipement= equipement::find($id);
+        $equipement= Equipment::find($id);
         return view('equipement.edit', compact('equipement'));
     }
 
@@ -147,16 +147,16 @@ class EquipementController extends Controller
               //  dd($photo);
 
                  $nom=$request->nom;
-                 $couleur=$request->couleur;
+                 $color=$request->color;
                  $marque=$request->marque;
                  $date=$request->date;
                 $detail=$request->detail;
 
 
 
-                $equipement= equipement::find($request->id);
+                $equipement= Equipment::find($request->id);
                 $equipement->nom=$nom;
-                 $equipement->couleur=$couleur;
+                 $equipement->color=$color;
                   $equipement->marque=$marque;
                    $equipement->date=$date;
             $equipement->detail=$detail;
@@ -169,16 +169,16 @@ class EquipementController extends Controller
                         ->with('success', 'Post updated successfully');
         } else {
                 $nom=$request->nom;
-                 $couleur=$request->couleur;
+                 $color=$request->color;
                  $marque=$request->marque;
                  $date=$request->date;
                 $detail=$request->detail;
 
 
 
-                $equipement=  equipement::find($request->id);
+                $equipement=  Equipment::find($request->id);
                 $equipement->nom=$nom;
-                 $equipement->couleur=$couleur;
+                 $equipement->color=$color;
                   $equipement->marque=$marque;
                    $equipement->date=$date;
             $equipement->detail=$detail;
@@ -193,7 +193,7 @@ class EquipementController extends Controller
 
 
     //      $nom=$request->nom;
-    //      $couleur=$request->couleur;
+    //      $color=$request->color;
     //      $marque=$request->marque;
     //      $date=$request->date;
     //         $detail=$request->detail;
@@ -203,7 +203,7 @@ class EquipementController extends Controller
 
     //     $equipement= equipement::find($request->id);
     //     $equipement->nom=$nom;
-    //      $equipement->couleur=$couleur;
+    //      $equipement->color=$color;
     //       $equipement->marque=$marque;
     //        $equipement->date=$date;
     //         $equipement->date=$detail;
@@ -223,7 +223,7 @@ class EquipementController extends Controller
      */
     public function destroy($id)
     {
-        $equipement= equipement::find($id);
+        $equipement= Equipment::find($id);
 
         $equipement->delete();
 

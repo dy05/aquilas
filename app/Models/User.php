@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -14,6 +15,8 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
+    use HasFactory, Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -30,8 +33,6 @@ class User extends Authenticatable
         'password',
         'active',
     ];
-
-    use HasFactory, Notifiable;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -56,13 +57,43 @@ class User extends Authenticatable
         'full_name',
     ];
 
-    public function getFullNameAttribute()
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute(): string
     {
         return join(' ', [$this->name, $this->surname]);
     }
 
-    public function orders()
+    /**
+     * @return HasMany
+     */
+    public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function purchases(): HasMany
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function commands(): HasMany
+    {
+        return $this->hasMany(Command::class);
     }
 }

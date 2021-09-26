@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\client;
 use App\Models\produit;
 use App\Models\Command;
-use App\Models\materielle;
+use App\Models\Material;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -55,7 +55,7 @@ class CommandController extends Controller
 
     public function show($id)
     {
-        $mats = materielle::all()->where('active', true);
+        $mats = Material::all()->where('active', true);
         $command = Command::find($id);
 
         return view('commands.show', compact('command', 'mats'));

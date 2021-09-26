@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePurchasesTable extends Migration
+class CreateExpenseHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,13 @@ class CreatePurchasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::create('expense_histories', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total_price');
-            $table->decimal('paid_amount')->nullable();
-            $table->decimal('rest')->nullable();
-            $table->boolean('active')->default(0);
+            $table->string('motif');
+            $table->integer('price');
+            $table->boolean('active')->default(1);
             $table->foreignId('user_id')
                 ->constrained('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignId('invoice_id')
-                ->constrained('invoices')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();
@@ -38,6 +33,6 @@ class CreatePurchasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchases');
+        Schema::dropIfExists('expense_histories');
     }
 }

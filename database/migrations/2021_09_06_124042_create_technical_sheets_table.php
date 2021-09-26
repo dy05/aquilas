@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommandsTable extends Migration
+class CreateTechnicalSheetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,26 @@ class CreateCommandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commands', function (Blueprint $table) {
+        Schema::create('technical_sheets', function (Blueprint $table) {
             $table->id();
-            $table->string('command_number')->nullable();
-            $table->date('date')->nullable();
+            $table->integer('number')->nullable();
+            $table->integer('surface')->nullable();
+            $table->string('vis')->nullable();
+            $table->integer('dim_height')->nullable();
+            $table->integer('dim_width')->nullable();
+            $table->integer('jumba_height')->nullable();
+            $table->integer('jumba_width')->nullable();
             $table->boolean('active')->default(1);
-            $table->json('products_list')->nullable();
-            $table->json('dimension')->nullable();
             $table->foreignId('product_id')
+                ->nullable()
                 ->constrained('products')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('customer_id')
-                ->constrained('customers')
+            $table->foreignId('material_id')
+                ->nullable()
+                ->constrained('materials')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->timestamp('end_at')->nullable();
             $table->timestamps();
         });
     }
@@ -40,6 +44,6 @@ class CreateCommandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commands');
+        Schema::dropIfExists('technical_sheets');
     }
 }

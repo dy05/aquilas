@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('status')->default('pending');
             $table->string('reference', 8);
             $table->decimal('total')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

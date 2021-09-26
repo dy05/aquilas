@@ -50,59 +50,59 @@
             <h2>ajouter categori produit</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('produits.create') }}"> ajouter</a>
+            <a class="btn btn-primary" href="{{ route('products.create') }}"> ajouter</a>
         </div>
     </div>
 </div>
-  
+
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
     @endif
-   
+
     <table class="table table-bordered">
         <tr>
-            
+
             <th>nom</th>
             <th>description</th>
             <th>prix unitaire</th>
             <th>photo</th>
             <th>Categorie</th>
-            
 
-              
+
+
             <th width="350px">Action</th>
         </tr>
         @foreach ($produites as $produit)
         <tr>
-            
+
             <td>{{ $produit->nom }}</td>
-            
+
             <td>{{ $produit->description }}</td>
              <td>{{ $produit->prix_unitaire }}</td>
-              <td>            
+              <td>
                <img src="{{ asset('img')}}/{{ $produit->photo }}" style="max-width:130px;margin-top: 20px" alt="">
                 </td>
                <td>{{ $produit->categorie->nom}}</td>
-            
+
              <td>
-            
-                <form action="/produit/destroy/{{$produit->id}}" method="POST">   
-                    <a class="btn btn-info" href="/produit/show/{{$produit->id}}">Show</a>    
-                    <a class="btn btn-primary" href="/produit/edit/{{$produit->id}}">Edit</a>   
-                  
+
+                <form action="/produit/destroy/{{$produit->id}}" method="POST">
+                    <a class="btn btn-info" href="/produit/show/{{$produit->id}}">Show</a>
+                    <a class="btn btn-primary" href="/produit/edit/{{$produit->id}}">Edit</a>
+
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addActeur" data->
                     command
                   </button>
         @csrf
-                    @method('DELETE')      
+                    @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
-    </table>  
+    </table>
 
 @endsection

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-   
+
 @section('content')
 
 <script>
@@ -23,11 +23,11 @@
                 <h2>Edit Product</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('produits.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
             </div>
         </div>
     </div>
-   
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <strong>Whoops!</strong> il ya eu un ploblem<br><br>
@@ -38,8 +38,8 @@
             </ul>
         </div>
     @endif
-  
-    <form action="{{ route('produits.update') }}" method="POST">
+
+    <form action="{{ route('products.update') }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -52,12 +52,12 @@
                 <input type="text" name="nom" value="{{ $produit->nom }}" class="form-control" placeholder="Entre le nom">
             </div>
         </div>
-      
+
               <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Description:</strong>
                 <textarea class="form-control" style="height:150px"  name="description"  placeholder="Description">{{ $produit->description}}</textarea>
-              
+
             </div>
 
              <div class="col-xs-12 col-sm-12 col-md-12">
@@ -79,13 +79,13 @@
                 <img  id="img" name="img" src="{{ asset('img')}}/{{ $produit->photo }}"  alt="profile image" style="max-width:130px;margin-top: 20px">
               </div>
          </div>
-        
-   
-        
+
+
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-   
+
     </form>
 @endsection

@@ -86,7 +86,7 @@ class AchatController extends Controller
      */
     public function show($id)
     {
-         $mats = materielle::all()->where('active', true);
+         $mats = Material::all()->where('active', true);
         $achat= Purchase::find($id);
         return view('achat.show', compact('achat', 'mats'));
     }

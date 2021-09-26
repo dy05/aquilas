@@ -57,7 +57,7 @@ class CategorieProduitController extends Controller
 
     //    categorie_Product::create($request->all());
 
-        return redirect()->route('categorie_produits.index')
+        return redirect()->route('categorie_products.index')
                         ->with('success', ' created successfully.');
     }
 
@@ -110,7 +110,7 @@ class CategorieProduitController extends Controller
 
     //    categorie_Product::create($request->all());
 
-        return redirect()->route('categorie_produits.index')
+        return redirect()->route('categorie_products.index')
                         ->with('success', 'Post updated successfully');
     }
 
@@ -126,7 +126,7 @@ class CategorieProduitController extends Controller
 
         $categorie_produit->delete();
 
-        return redirect()->route('categorie_produits.index')
+        return redirect()->route('categorie_products.index')
                         ->with('success', 'Post deleted successfully');
     }
 }

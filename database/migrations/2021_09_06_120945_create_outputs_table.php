@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvoicesTable extends Migration
+class CreateOutputsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,26 @@ class CreateInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('outputs', function (Blueprint $table) {
             $table->id();
-            $table->string('reference');
-            $table->string('designation');
-            $table->string('dimension')->nullable();
-            $table->string('quantity');
-            $table->string('unit_price');
-            $table->decimal('amount');
-            $table->decimal('total_amount');
+            $table->integer('quantity');
+            $table->integer('total_amount');
             $table->boolean('active')->default(0);
-            $table->timestamps();
             $table->foreignId('user_id')
-                ->constrained('Users')
+                ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('purchase_id')
-                ->constrained('purchases')
+            $table->foreignId('product_id')
+                ->nullable()
+                ->constrained('products')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('material_id')
+                ->nullable()
+                ->constrained('materials')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -42,6 +43,6 @@ class CreateInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('outputs');
     }
 }

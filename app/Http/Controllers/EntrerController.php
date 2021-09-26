@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\entrer;
-use App\Models\materielle;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +30,7 @@ class EntrerController extends Controller
      */
     public function create()
     {
-        $mats= materielle::all()->where('active', true);
+        $mats= Material::all()->where('active', true);
         return view('entrer.create', compact('mats'));
     }
 
@@ -51,7 +51,7 @@ class EntrerController extends Controller
 
 
          $prix=$request->prix;
-         $idMaterielle=$request->idMaterielle;
+         $idMaterielle=$request->idMaterial;
         $quantite_entrer=$request->quantite_entrer;
         $total= $quantite_entrer*$prix;
            $user= Auth::user()->id;
@@ -64,12 +64,12 @@ class EntrerController extends Controller
             $entrer->quantite_entrer= $quantite_entrer;
         $entrer->prix=$prix;
           $entrer->date=now();
-           $entrer->idMaterielle=$idMaterielle;
+           $entrer->idMaterielle=$idMaterial;
             $entrer->prix_total=$total;
              $entrer->user_id=$user;
         $entrer->save();
 
-        $materielle= materielle::find($idMaterielle);
+        $materielle= Material::find($idMaterielle);
         $materielle->quantite=$materielle->quantite+$quantite_entrer;
         $materielle->save();
 
@@ -87,7 +87,7 @@ class EntrerController extends Controller
      */
     public function show($id)
     {
-         $mats = materielle::all()->where('active', true);
+         $mats = Material::all()->where('active', true);
         $entrer= entrer::find($id);
         return view('entrer.show', compact('entrer', 'mats'));
     }
@@ -101,8 +101,8 @@ class EntrerController extends Controller
     public function edit($id)
     {
         $entrer= entrer::find($id);
-        $mat= materielle::find($entrer->idMaterielle);
-        $mats = materielle::all();
+        $mat= Material::find($entrer->idMaterielle);
+        $mats = Material::all();
         return view('entrer.edit', compact('entrer', 'mat', 'mats'));
     }
 
@@ -125,7 +125,7 @@ class EntrerController extends Controller
 
 
          $prix=$request->prix;
-         $idMaterielle=$request->idMaterielle;
+         $idMaterielle=$request->idMaterial;
         $quantite_entrer=$request->quantite_entrer;
         $total= $quantite_entrer*$prix;
            $user= Auth::user()->id;
@@ -136,7 +136,7 @@ class EntrerController extends Controller
 
             $entrer->quantite_entrer= $quantite_entrer;
         $entrer->prix=$prix;
-           $entrer->idMaterielle=$idMaterielle;
+           $entrer->idMaterielle=$idMaterial;
             $entrer->prix_total=$total;
              $entrer->user_id=$user;
         $entrer->save();

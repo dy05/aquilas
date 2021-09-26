@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\categorie_materielle;
+use App\Models\categorie_Material;
 
 class CategorieMaterielleController extends Controller
 {
@@ -16,7 +16,7 @@ class CategorieMaterielleController extends Controller
     public function index()
     {
 
-        $categorie_materiellees = categorie_materielle::all();
+        $categorie_materiellees = categorie_Material::all();
 
         return view('categorie_materielle.index', compact('categorie_materiellees'));
     }
@@ -56,7 +56,7 @@ class CategorieMaterielleController extends Controller
 
         $categorie_materielle->save();
 
-    //    categorie_materielle::create($request->all());
+    //    categorie_Material::create($request->all());
 
         return redirect()->route('categorie_materielles.index')
                         ->with('success', ' created successfully.');
@@ -70,7 +70,7 @@ class CategorieMaterielleController extends Controller
      */
     public function show($id)
     {
-        $categorie_materielle= categorie_materielle::find($id);
+        $categorie_materielle= categorie_Material::find($id);
         return view('categorie_materielle.show', compact('categorie_materielle'));
     }
 
@@ -82,7 +82,7 @@ class CategorieMaterielleController extends Controller
      */
     public function edit($id)
     {
-        $categorie_materielle= categorie_materielle::find($id);
+        $categorie_materielle= categorie_Material::find($id);
         return view('categorie_materielle.edit', compact('categorie_materielle'));
     }
 
@@ -103,13 +103,13 @@ class CategorieMaterielleController extends Controller
         $nom=$request->nom;
          $description=$request->description;
 
-        $categorie_materielle=categorie_materielle::find($request->id);
+        $categorie_materielle=categorie_Material::find($request->id);
         $categorie_materielle->nom=$nom;
          $categorie_materielle->description=$description;
 
         $categorie_materielle->save();
 
-    //    categorie_materielle::create($request->all());
+    //    categorie_Material::create($request->all());
 
         return redirect()->route('categorie_materielles.index')
                         ->with('success', 'Post updated successfully');
@@ -123,7 +123,7 @@ class CategorieMaterielleController extends Controller
      */
     public function destroy($id)
     {
-        $categorie_materielle= categorie_materielle::find($id);
+        $categorie_materielle= categorie_Material::find($id);
 
         $categorie_materielle->delete();
 

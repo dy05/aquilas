@@ -74,7 +74,7 @@ class ProduitController extends Controller
 
             //    Product::create($request->all());
 
-                return redirect()->route('produits.index')
+                return redirect()->route('products.index')
                         ->with('success', ' created successfully.');
         } else {
                  $nom=$request->nom;
@@ -96,7 +96,7 @@ class ProduitController extends Controller
 
             //    Product::create($request->all());
 
-                return redirect()->route('produits.index')
+                return redirect()->route('products.index')
                         ->with('success', ' created successfully.');
         }
     }
@@ -168,7 +168,7 @@ class ProduitController extends Controller
 
             //    Product::create($request->all());
 
-                return redirect()->route('produits.index')
+                return redirect()->route('products.index')
                         ->with('success', 'Post updated successfully');
         } else {
                 $nom=$request->nom;
@@ -189,7 +189,7 @@ class ProduitController extends Controller
              $produit->save();
             //    Product::create($request->all());
 
-                return redirect()->route('produits.index')
+                return redirect()->route('products.index')
                         ->with('success', 'Post updated successfully');
         }
     }
@@ -206,7 +206,7 @@ class ProduitController extends Controller
 
         $produit->delete();
 
-        return redirect()->route('produits.index')
+        return redirect()->route('products.index')
                         ->with('success', 'Post deleted successfully');
     }
 }

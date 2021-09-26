@@ -1,5 +1,5 @@
 @extends('layouts.app')
-   
+
 @section('content')
 <script>
         function previewFile() {
@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-   
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <strong>Whoops!</strong> il ya eu un ploblem<br><br>
@@ -38,7 +38,7 @@
             </ul>
         </div>
     @endif
-  
+
     <form action="{{ route('materielles.update') }}" method="POST">
         @csrf
         @method('PUT')
@@ -52,12 +52,12 @@
                 <input type="text" name="nom" value="{{ $materielle->nom }}" class="form-control" placeholder="Entre le nom">
             </div>
         </div>
-      
+
               <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>couleur:</strong>
-                <textarea class="form-control" style="height:150px"  name="couleur"  placeholder="couleur">{{ $materielle->couleur}}</textarea>
-              
+                <strong>color:</strong>
+                <textarea class="form-control" style="height:150px"  name="color"  placeholder="color">{{ $materielle->color}}</textarea>
+
             </div>
 
              <div class="col-xs-12 col-sm-12 col-md-12">
@@ -86,13 +86,13 @@
                 <img  id="img" name="img" src="{{ asset('img')}}/{{ $materielle->photo }}"  alt="profile image" style="max-width:130px;margin-top: 20px">
               </div>
          </div>
-        
-   
-        
+
+
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-   
+
     </form>
 @endsection

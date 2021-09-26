@@ -3,7 +3,7 @@
 use App\Http\Controllers\CommandController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ToolController;
-use App\Models\Equipement;
+use App\Models\Equipment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,22 +34,22 @@ Route::delete('/categorie_materielle/destroy/{id}', [App\Http\Controllers\Catego
 
 
 // categorie produit
-Route::get('/categorie_produit', [App\Http\Controllers\categorieproduitcontroller::class, 'index'])->name('categorie_produits.index');
-Route::get('/categorie_produit/create', [App\Http\Controllers\categorieproduitcontroller::class, 'create'])->name('categorie_produits.create');
-Route::post('/categorie_produit/store', [App\Http\Controllers\categorieproduitcontroller::class, 'store'])->name('categorie_produits.store');
-Route::get('/categorie_produit/show/{id}', [App\Http\Controllers\categorieproduitcontroller::class, 'show'])->name('categorie_produits.show');
-Route::get('/categorie_produit/edit/{id}', [App\Http\Controllers\categorieproduitcontroller::class, 'edit'])->name('categorie_produits.edit');
-Route::put('/categorie_produit/update', [App\Http\Controllers\categorieproduitcontroller::class, 'update'])->name('categorie_produits.update');
-Route::delete('/categorie_produit/destroy/{id}', [App\Http\Controllers\categorieproduitcontroller::class, 'destroy'])->name('categorie_produits.destroy');
+Route::get('/categorie_produit', [App\Http\Controllers\categorieproduitcontroller::class, 'index'])->name('categorie_products.index');
+Route::get('/categorie_produit/create', [App\Http\Controllers\categorieproduitcontroller::class, 'create'])->name('categorie_products.create');
+Route::post('/categorie_produit/store', [App\Http\Controllers\categorieproduitcontroller::class, 'store'])->name('categorie_products.store');
+Route::get('/categorie_produit/show/{id}', [App\Http\Controllers\categorieproduitcontroller::class, 'show'])->name('categorie_products.show');
+Route::get('/categorie_produit/edit/{id}', [App\Http\Controllers\categorieproduitcontroller::class, 'edit'])->name('categorie_products.edit');
+Route::put('/categorie_produit/update', [App\Http\Controllers\categorieproduitcontroller::class, 'update'])->name('categorie_products.update');
+Route::delete('/categorie_produit/destroy/{id}', [App\Http\Controllers\categorieproduitcontroller::class, 'destroy'])->name('categorie_products.destroy');
 
 // produit produit
-Route::get('/produit', [App\Http\Controllers\Produitcontroller::class, 'index'])->name('produits.index');
-Route::get('/produit/create', [App\Http\Controllers\Produitcontroller::class, 'create'])->name('produits.create');
-Route::post('/produit/store', [App\Http\Controllers\Produitcontroller::class, 'store'])->name('produits.store');
-Route::get('/produit/show/{id}', [App\Http\Controllers\Produitcontroller::class, 'show'])->name('produits.show');
-Route::get('/produit/edit/{id}', [App\Http\Controllers\Produitcontroller::class, 'edit'])->name('produits.edit');
-Route::put('/produit/update', [App\Http\Controllers\Produitcontroller::class, 'update'])->name('produits.update');
-Route::delete('/produit/destroy/{id}', [App\Http\Controllers\Produitcontroller::class, 'destroy'])->name('produits.destroy');
+Route::get('/produit', [App\Http\Controllers\Produitcontroller::class, 'index'])->name('products.index');
+Route::get('/produit/create', [App\Http\Controllers\Produitcontroller::class, 'create'])->name('products.create');
+Route::post('/produit/store', [App\Http\Controllers\Produitcontroller::class, 'store'])->name('products.store');
+Route::get('/produit/show/{id}', [App\Http\Controllers\Produitcontroller::class, 'show'])->name('products.show');
+Route::get('/produit/edit/{id}', [App\Http\Controllers\Produitcontroller::class, 'edit'])->name('products.edit');
+Route::put('/produit/update', [App\Http\Controllers\Produitcontroller::class, 'update'])->name('products.update');
+Route::delete('/produit/destroy/{id}', [App\Http\Controllers\Produitcontroller::class, 'destroy'])->name('products.destroy');
 
 //materielle
 Route::get('/tools', [ToolController::class, 'index'])->name('tools.index');

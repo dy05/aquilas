@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\materielle;
+use App\Models\Material;
 use Illuminate\Http\Request;
-use App\Models\categorie_materielle;
+use App\Models\categorie_Material;
 
 class ToolController extends Controller
 {
@@ -17,7 +17,7 @@ class ToolController extends Controller
     public function index()
     {
 
-        $materiellees = materielle::all()->where('active', true);
+        $materiellees = Material::all()->where('active', true);
 
         return view('materielle.index', compact('materiellees'));
     }
@@ -29,7 +29,7 @@ class ToolController extends Controller
      */
     public function create()
     {
-        $cats = categorie_materielle::all();
+        $cats = categorie_Material::all();
         return view('materielle.create', compact('cats'));
     }
 
@@ -43,7 +43,7 @@ class ToolController extends Controller
     {
          $request->validate([
              'name' => 'required',
-             'couleur' => 'required',
+             'color' => 'required',
              'dimension' => 'required',
              'idCategorie' => 'required',
              'quantite' => 'required',
@@ -60,7 +60,7 @@ class ToolController extends Controller
               //  dd($photo);
 
                  $nom=$request->nom;
-                 $couleur=$request->couleur;
+                 $color=$request->color;
                  $dimension=$request->dimension;
                 $idCategorie=$request->idCategorie;
 
@@ -73,18 +73,18 @@ class ToolController extends Controller
             $materielle->quantite= $quantite;
                 $materielle->nom=$nom;
                   $materielle->idCategorie=$idCategorie;
-                   $materielle->couleur=$couleur;
+                   $materielle->color=$color;
             $materielle->dimension=$dimension;
              $materielle->photo=$photoName;
              $materielle->save();
 
-            //    materielle::create($request->all());
+            //    Material::create($request->all());
 
                 return redirect()->route('materielles.index')
                         ->with('success', ' created successfully.');
         } else {
                  $nom=$request->nom;
-                 $couleur=$request->couleur;
+                 $color=$request->color;
                  $dimension=$request->dimension;
                 $idCategorie=$request->idCategorie;
 
@@ -96,12 +96,12 @@ class ToolController extends Controller
                   $quantite=$request->quantite;
             $materielle->quantite= $quantite;
                 $materielle->idCategorie=$idCategorie;
-                   $materielle->couleur=$couleur;
+                   $materielle->color=$color;
             $materielle->dimension=$dimension;
              $materielle->photo="a.png";
              $materielle->save();
 
-            //    materielle::create($request->all());
+            //    Material::create($request->all());
 
                 return redirect()->route('materielles.index')
                         ->with('success', ' created successfully.');
@@ -116,8 +116,8 @@ class ToolController extends Controller
      */
     public function show($id)
     {
-         $cats = categorie_materielle::all();
-        $materielle= materielle::find($id);
+         $cats = categorie_Material::all();
+        $materielle= Material::find($id);
         return view('materielle.show', compact('materielle', 'cats'));
     }
 
@@ -129,8 +129,8 @@ class ToolController extends Controller
      */
     public function edit($id)
     {
-        $materielle= materielle::find($id);
-        $cats = categorie_materielle::all();
+        $materielle= Material::find($id);
+        $cats = categorie_Material::all();
         return view('materielle.edit', compact('materielle', 'cats'));
     }
 
@@ -145,7 +145,7 @@ class ToolController extends Controller
     {
          $request->validate([
              'name' => 'required',
-             'couleur' => 'required',
+             'color' => 'required',
              'dimension' => 'required',
              'idCategorie' => 'required',
              'quantite' => 'required',
@@ -159,44 +159,44 @@ class ToolController extends Controller
 
               //  dd($photo);
             $nom=$request->nom;
-                 $couleur=$request->couleur;
+                 $color=$request->color;
                  $dimension=$request->dimension;
                 $idCategorie=$request->idCategorie;
 
                  $quantite=$request->quantite;
             $materielle->quantite= $quantite;
 
-                $materielle= materielle::find($request->id);
+                $materielle= Material::find($request->id);
                  $quantite=$request->quantite;
             $materielle->quantite= $quantite;
                $materielle->idCategorie=$idCategorie;
-                   $materielle->couleur=$couleur;
+                   $materielle->color=$color;
             $materielle->dimension=$dimension;
              $materielle->photo=$photoName;
              $materielle->save();
 
-            //    materielle::create($request->all());
+            //    Material::create($request->all());
 
                 return redirect()->route('materielles.index')
                         ->with('success', 'Post updated successfully');
         } else {
                 $nom=$request->nom;
-                 $couleur=$request->couleur;
+                 $color=$request->color;
                  $dimension=$request->dimension;
                 $idCategorie=$request->idCategorie;
 
 
 
 
-                $materielle= materielle::find($request->id);
+                $materielle= Material::find($request->id);
                   $quantite=$request->quantite;
             $materielle->quantite= $quantite;
                 $materielle->idCategorie=$idCategorie;
-                   $materielle->couleur=$couleur;
+                   $materielle->color=$color;
             $materielle->dimension=$dimension;
             // $materielle->photo="a.png";
              $materielle->save();
-            //    materielle::create($request->all());
+            //    Material::create($request->all());
 
                 return redirect()->route('materielles.index')
                         ->with('success', 'Post updated successfully');
@@ -211,7 +211,7 @@ class ToolController extends Controller
      */
     public function destroy($id)
     {
-        $materielle= materielle::find($id);
+        $materielle= Material::find($id);
 
         $materielle->delete();
 

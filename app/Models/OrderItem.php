@@ -2,28 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Output extends Model
+class OrderItem extends Pivot
 {
-    use HasFactory;
-
     protected $fillable = [
-        'quantity',
-        'total_amount',
-        'user_id',
-        'material_id',
+        'product_details',
+        'order_id',
         'product_id',
+        'material_id',
+        'status',
+    ];
+
+    protected $casts = [
+        'product_details' => 'array',
     ];
 
     /**
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    public function order(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Order::class, 'order_id');
     }
 
     /**

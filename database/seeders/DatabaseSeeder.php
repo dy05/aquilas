@@ -13,12 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
- factory(User::class, 5)->create();
-        factory(Order::class, 30)
-        ->create()
-        ->each(function ($order) {
-            $order->products()->createMany(
-                factory(Product::class, rand(3, 8))->make()->toArray()
-            );
-      });    }
+        $this->call(UserSeeder::class);
+    }
 }

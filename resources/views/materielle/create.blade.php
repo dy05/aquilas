@@ -29,7 +29,7 @@
         </div>
     </div>
 </div>
-   
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <strong>Whoops!</strong> il a eu un problem.<br><br>
@@ -40,10 +40,10 @@
         </ul>
     </div>
 @endif
-   
+
 <form action="{{ route('materielles.store') }}" method="POST"enctype="multipart/form-data">
     @csrf
-  
+
      <div class="row container ml-5">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -54,9 +54,9 @@
 
               <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>couleur:</strong>
-                <textarea class="form-control" style="height:150px"  name="couleur" placeholder="couleur"></textarea>
-              
+                <strong>color:</strong>
+                <textarea class="form-control" style="height:150px"  name="color" placeholder="color"></textarea>
+
             </div>
              <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -87,7 +87,7 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-   
+
 </form>
 
 @endsection

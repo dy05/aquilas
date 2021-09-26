@@ -15,20 +15,26 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->string('payment');
-            $table->string('number');
-            $table->date('date')->nullable();
+            $table->string('payment')->nullable();
+            $table->string('number')->nullable();
             $table->string('amount')->nullable();
             $table->boolean('active')->default(1);
-            $table->timestamps();
             $table->foreignId('product_id')
                 ->constrained('products')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('customer_id')
+                ->nullable()
                 ->constrained('customers')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->timestamp('validated_at')->nullable();
+            $table->timestamps();
         });
     }
 
