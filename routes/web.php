@@ -19,7 +19,7 @@ Auth::routes();
 
 // Auth routes
 Route::get('/order/{id}', [AppController::class, 'command'])->name('order');
-Route::post('/order/{id}', [AppController::class, 'command'])->name('order');
+Route::post('/order/{id}', [AppController::class, 'command'])->name('order_in');
 
 // products
 Route::group(['prefix' => 'product_categories', 'as' => 'product_categories.'], function () {
