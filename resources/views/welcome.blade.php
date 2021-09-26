@@ -47,7 +47,7 @@
                     </div>
                     <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Amoires</h2>
                     <p class="leading-relaxed text-base">Avec un design adapté a votre besoin.</p>
-                    <a href="{{ route('order', ['id' => 1, 'type' => 'product'] }}" class="flex mx-auto mt-6 text-white bg-yellow-400 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-300 rounded">Click here</a>
+                    <a href="{{ route('order', ['id' => 1, 'type' => 'product']) }}" class="flex mx-auto mt-6 text-white bg-yellow-400 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-300 rounded">Click here</a>
                 </div>
                 <div class="sm:w-1/2 mb-10 px-4">
                     <div class="rounded-lg h-64 overflow-hidden">
