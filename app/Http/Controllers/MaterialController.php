@@ -6,7 +6,7 @@ use App\Models\Material;
 use Illuminate\Http\Request;
 use App\Models\categorie_Material;
 
-class ToolController extends Controller
+class MaterialController extends Controller
 {
 
     /**

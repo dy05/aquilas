@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\AppController;
-use App\Http\Controllers\CategorieMaterielleController;
 use App\Http\Controllers\CommandController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EntryController;
 use App\Http\Controllers\EquipmentController;
-use App\Http\Controllers\Productcontroller;
-use App\Http\Controllers\ToolController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\MaterialCategoryController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\OutputController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,23 +19,23 @@ Auth::routes();
 
 // products
 Route::group(['prefix' => 'product_categories', 'as' => 'product_categories.'], function () {
-    Route::get('/', [Productcontroller::class, 'index'])->name('index');
-    Route::get('/create', [Productcontroller::class, 'create'])->name('create');
-    Route::post('/store', [Productcontroller::class, 'store'])->name('store');
-    Route::get('/{product_category}', [Productcontroller::class, 'show'])->name('show');
-    Route::get('/{product_category}/edit', [Productcontroller::class, 'edit'])->name('edit');
-    Route::put('/{product_category}', [Productcontroller::class, 'update'])->name('update');
-    Route::delete('/{product_category}', [Productcontroller::class, 'destroy'])->name('destroy');
+    Route::get('/', [ProductCategoryController::class, 'index'])->name('index');
+    Route::get('/create', [ProductCategoryController::class, 'create'])->name('create');
+    Route::post('/store', [ProductCategoryController::class, 'store'])->name('store');
+    Route::get('/{product_category}', [ProductCategoryController::class, 'show'])->name('show');
+    Route::get('/{product_category}/edit', [ProductCategoryController::class, 'edit'])->name('edit');
+    Route::put('/{product_category}', [ProductCategoryController::class, 'update'])->name('update');
+    Route::delete('/{product_category}', [ProductCategoryController::class, 'destroy'])->name('destroy');
 });
 
 Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-    Route::get('/', [Productcontroller::class, 'index'])->name('index');
-    Route::get('/create', [Productcontroller::class, 'create'])->name('create');
-    Route::post('/store', [Productcontroller::class, 'store'])->name('store');
-    Route::get('/{product}', [Productcontroller::class, 'show'])->name('show');
-    Route::get('/{product}/edit', [Productcontroller::class, 'edit'])->name('edit');
-    Route::put('/{product}', [Productcontroller::class, 'update'])->name('update');
-    Route::delete('/{product}', [Productcontroller::class, 'destroy'])->name('destroy');
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::get('/create', [ProductController::class, 'create'])->name('create');
+    Route::post('/store', [ProductController::class, 'store'])->name('store');
+    Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+    Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('edit');
+    Route::put('/{product}', [ProductController::class, 'update'])->name('update');
+    Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
 });
 
 //  equipment
@@ -45,59 +49,67 @@ Route::group(['prefix' => 'equipments', 'as' => 'equipments.'], function () {
     Route::delete('/{equipment}', [EquipmentController::class, 'destroy'])->name('destroy');
 });
 
-// categorie
-Route::get('/categorie_materielle', [CategorieMaterielleController::class, 'index'])->name('categorie_materielles.index');
-Route::get('/categorie_materielle/create', [CategorieMaterielleController::class, 'create'])->name('categorie_materielles.create');
-Route::post('/categorie_materielle/store', [CategorieMaterielleController::class, 'store'])->name('categorie_materielles.store');
-Route::get('/categorie_materielle/show/{id}', [CategorieMaterielleController::class, 'show'])->name('categorie_materielles.show');
-Route::get('/categorie_materielle/edit/{id}', [CategorieMaterielleController::class, 'edit'])->name('categorie_materielles.edit');
-Route::put('/categorie_materielle/update', [CategorieMaterielleController::class, 'update'])->name('categorie_materielles.update');
-Route::delete('/categorie_materielle/destroy/{id}', [CategorieMaterielleController::class, 'destroy'])->name('categorie_materielles.destroy');
+//materials
+Route::group(['prefix' => 'material_categories', 'as' => 'material_categories.'], function () {
+    Route::get('/', [MaterialCategoryController::class, 'index'])->name('index');
+    Route::get('/create', [MaterialCategoryController::class, 'create'])->name('create');
+    Route::post('/store', [MaterialCategoryController::class, 'store'])->name('store');
+    Route::get('/{material_category}', [MaterialCategoryController::class, 'show'])->name('show');
+    Route::get('/{material_category}/edit', [MaterialCategoryController::class, 'edit'])->name('edit');
+    Route::put('/{material_category}', [MaterialCategoryController::class, 'update'])->name('update');
+    Route::delete('/{material_category}', [MaterialCategoryController::class, 'destroy'])->name('destroy');
+});
+Route::group(['prefix' => 'materials', 'as' => 'materials.'], function () {
+    Route::get('/', [MaterialController::class, 'index'])->name('index');
+    Route::get('/create', [MaterialController::class, 'create'])->name('create');
+    Route::post('/store', [MaterialController::class, 'store'])->name('store');
+    Route::get('/{material}', [MaterialController::class, 'show'])->name('show');
+    Route::get('/{material}/edit', [MaterialController::class, 'edit'])->name('edit');
+    Route::put('/{material}', [MaterialController::class, 'update'])->name('update');
+    Route::delete('/{material}', [MaterialController::class, 'destroy'])->name('destroy');
+});
 
+// customers
+Route::group(['prefix' => 'customers', 'as' => 'customers.'], function () {
+    Route::get('/', [CustomerController::class, 'index'])->name('index');
+    Route::get('/create', [CustomerController::class, 'create'])->name('create');
+    Route::post('/store', [CustomerController::class, 'store'])->name('store');
+    Route::get('/{customer}', [CustomerController::class, 'show'])->name('show');
+    Route::get('/{customer}/edit', [CustomerController::class, 'edit'])->name('edit');
+    Route::put('/{customer}', [CustomerController::class, 'update'])->name('update');
+    Route::delete('/{customer}', [CustomerController::class, 'destroy'])->name('destroy');
+});
 
-// categorie product
-Route::get('/categorie_product', [\App\Http\Controllers\categorieproductcontroller::class, 'index'])->name('categorie_products.index');
-Route::get('/categorie_product/create', [\App\Http\Controllers\categorieproductcontroller::class, 'create'])->name('categorie_products.create');
-Route::post('/categorie_product/store', [\App\Http\Controllers\categorieproductcontroller::class, 'store'])->name('categorie_products.store');
-Route::get('/categorie_product/show/{id}', [\App\Http\Controllers\categorieproductcontroller::class, 'show'])->name('categorie_products.show');
-Route::get('/categorie_product/edit/{id}', [\App\Http\Controllers\categorieproductcontroller::class, 'edit'])->name('categorie_products.edit');
-Route::put('/categorie_product/update', [\App\Http\Controllers\categorieproductcontroller::class, 'update'])->name('categorie_products.update');
-Route::delete('/categorie_product/destroy/{id}', [\App\Http\Controllers\categorieproductcontroller::class, 'destroy'])->name('categorie_products.destroy');
+//commands
+Route::group(['prefix' => 'commands', 'as' => 'commands.'], function () {
+    Route::get('/', [CommandController::class, 'index'])->name('index');
+    Route::get('/create', [CommandController::class, 'create'])->name('create');
+    Route::post('/store', [CommandController::class, 'store'])->name('store');
+    Route::get('/{command}', [CommandController::class, 'show'])->name('show');
+    Route::get('/{command}/edit', [CommandController::class, 'edit'])->name('edit');
+    Route::put('/{command}', [CommandController::class, 'update'])->name('update');
+    Route::delete('/{command}', [CommandController::class, 'destroy'])->name('destroy');
+    Route::post('/termine/{command}', [CommandController::class, 'termine'])->name('termine');
+});
 
-//materielle
-Route::get('/tools', [ToolController::class, 'index'])->name('tools.index');
-Route::get('/tools/create', [ToolController::class, 'create'])->name('tools.create');
-Route::post('/tools/store', [ToolController::class, 'store'])->name('tools.store');
-Route::get('/tools/{tool}', [ToolController::class, 'show'])->name('tools.show');
-Route::get('/tools/{tool}/edit', [ToolController::class, 'edit'])->name('tools.edit');
-Route::put('/tools/{tool}', [ToolController::class, 'update'])->name('tools.update');
-Route::delete('/tools/{tool}', [ToolController::class, 'destroy'])->name('tools.destroy');
+//entries
+Route::group(['prefix' => 'entries', 'as' => 'entries.'], function () {
+    Route::get('/', [EntryController::class, 'index'])->name('index');
+    Route::get('/create', [EntryController::class, 'create'])->name('create');
+    Route::post('/store', [EntryController::class, 'store'])->name('store');
+    Route::get('/{entry}', [EntryController::class, 'show'])->name('show');
+    Route::get('/{entry}/edit', [EntryController::class, 'edit'])->name('edit');
+    Route::put('/{entry}', [EntryController::class, 'update'])->name('update');
+    Route::delete('/{entry}', [EntryController::class, 'destroy'])->name('destroy');
+});
 
-// client
-Route::get('/client', [\App\Http\Controllers\CustomerController::class, 'index'])->name('clients.index');
-Route::get('/client/create', [\App\Http\Controllers\CustomerController::class, 'create'])->name('clients.create');
-Route::post('/client/store', [\App\Http\Controllers\CustomerController::class, 'store'])->name('clients.store');
-Route::get('/client/show/{id}', [\App\Http\Controllers\CustomerController::class, 'show'])->name('clients.show');
-Route::get('/client/edit/{id}', [\App\Http\Controllers\CustomerController::class, 'edit'])->name('clients.edit');
-Route::put('/client/update', [\App\Http\Controllers\CustomerController::class, 'update'])->name('clients.update');
-Route::delete('/client/destroy/{id}', [\App\Http\Controllers\CustomerController::class, 'destroy'])->name('clients.destroy');
-
-
-//command
-Route::get('/entrer', [\App\Http\Controllers\EntrerController::class, 'index'])->name('entrers.index');
-Route::get('/entrer/create', [\App\Http\Controllers\EntrerController::class, 'create'])->name('entrers.create');
-Route::post('/entrer/store', [\App\Http\Controllers\EntrerController::class, 'store'])->name('entrers.store');
-Route::get('/entrer/show/{id}', [\App\Http\Controllers\EntrerController::class, 'show'])->name('entrers.show');
-Route::get('/entrer/edit/{id}', [\App\Http\Controllers\EntrerController::class, 'edit'])->name('entrers.edit');
-Route::put('/entrer/update', [\App\Http\Controllers\EntrerController::class, 'update'])->name('entrers.update');
-Route::delete('/entrer/destroy/{id}', [\App\Http\Controllers\EntrerController::class, 'destroy'])->name('entrers.destroy');
-
-//command
-Route::get('/commands', [CommandController::class, 'index'])->name('commands.index');
-Route::get('/commands/create', [CommandController::class, 'create'])->name('commands.create');
-Route::post('/commands/store', [CommandController::class, 'store'])->name('commands.store');
-Route::get('/commands/{command}', [CommandController::class, 'show'])->name('commands.show');
-Route::get('/commands/{command}/edit', [CommandController::class, 'edit'])->name('commands.edit');
-Route::put('/commands/{command}', [CommandController::class, 'update'])->name('commands.update');
-Route::delete('/commands/{command}', [CommandController::class, 'destroy'])->name('commands.destroy');
-Route::get('/commands/termine/{id}', [CommandController::class, 'termine'])->name('commands.termine');
+//outputs
+Route::group(['prefix' => 'outputs', 'as' => 'outputs.'], function () {
+    Route::get('/', [OutputController::class, 'index'])->name('index');
+    Route::get('/create', [OutputController::class, 'create'])->name('create');
+    Route::post('/store', [OutputController::class, 'store'])->name('store');
+    Route::get('/{entry}', [OutputController::class, 'show'])->name('show');
+    Route::get('/{output}/edit', [OutputController::class, 'edit'])->name('edit');
+    Route::put('/{output}', [OutputController::class, 'update'])->name('update');
+    Route::delete('/{output}', [OutputController::class, 'destroy'])->name('destroy');
+});

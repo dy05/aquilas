@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\categorie_Material;
 
-class CategorieMaterielleController extends Controller
+class MaterialCategoryController extends Controller
 {
 
         /**

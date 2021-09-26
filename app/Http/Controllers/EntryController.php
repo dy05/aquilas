@@ -7,7 +7,7 @@ use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EntrerController extends Controller
+class EntryController extends Controller
 {
 
     /**
