@@ -31,22 +31,33 @@
 <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-wrap -mx-4 -mb-10 text-center">
-            <div class="sm:w-1/2 mb-10 px-4">
-                <div class="rounded-lg h-64 overflow-hidden">
-                    <img alt="cake" class="object-cover object-center h-full w-full" src="https://source.unsplash.com/1201x501/?food,cake">
+            @forelse($products as $product)
+                <div class="sm:w-1/2 mb-10 px-4">
+                    <div class="rounded-lg h-64 overflow-hidden">
+                        <img alt="content" class="object-cover object-center h-full w-full" src="{{ asset('img/img1.jpg') }}">
+                    </div>
+                    <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">{{ $product->name }}</h2>
+                    <p class="leading-relaxed text-base">{{ $product->short_description }}</p>
+                    <button class="flex mx-auto mt-6 text-white bg-yellow-400 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-300 rounded">Click here</button>
                 </div>
-                <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Egg Cakes</h2>
-                <p class="leading-relaxed text-base">A party without cake is just a meeting.</p>
-                <button class="flex mx-auto mt-6 text-white bg-yellow-400 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-300 rounded">Click here</button>
-            </div>
-            <div class="sm:w-1/2 mb-10 px-4">
-                <div class="rounded-lg h-64 overflow-hidden">
-                    <img alt="content" class="object-cover object-center h-full w-full" src="https://source.unsplash.com/1202x502/?food,cake">
+            @empty
+                <div class="sm:w-1/2 mb-10 px-4">
+                    <div class="rounded-lg h-64 overflow-hidden">
+                        <img alt="cake" class="object-cover object-center h-full w-full" src="{{ asset('img/img1.jpg') }}">
+                    </div>
+                    <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Amoires</h2>
+                    <p class="leading-relaxed text-base">Avec un design adapté a votre besoin.</p>
+                    <button class="flex mx-auto mt-6 text-white bg-yellow-400 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-300 rounded">Click here</button>
                 </div>
-                <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Without Egg</h2>
-                <p class="leading-relaxed text-base">A party without cake is just a meeting.</p>
-                <button class="flex mx-auto mt-6 text-white bg-yellow-400 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-300 rounded">Click here</button>
-            </div>
+                <div class="sm:w-1/2 mb-10 px-4">
+                    <div class="rounded-lg h-64 overflow-hidden">
+                        <img alt="content" class="object-cover object-center h-full w-full" src="{{ asset('img/img1.jpg') }}">
+                    </div>
+                    <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Tables et salle a manger</h2>
+                    <p class="leading-relaxed text-base">Une touche particuliere pour des clients particuliers. Parce que chaque besoin merite d'etre comblé a juste prix.</p>
+                    <button class="flex mx-auto mt-6 text-white bg-yellow-400 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-300 rounded">Click here</button>
+                </div>
+            @endforelse
         </div>
     </div>
 </section>
@@ -54,20 +65,16 @@
 <hr>
 
 <section class="text-gray-600 body-font relative">
-    <div class="absolute inset-0 bg-gray-300">
-        <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no" src="https://goo.gl/maps/vyLVHEjevMEkf4oe8
-          ?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" style="filter: grayscale(1) contrast(1.2) opacity(0.4);"></iframe>
-    </div>
     <div class="container px-5 py-24 mx-auto flex">
         <div class="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
-            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Feedback</h2>
-            <p class="leading-relaxed mb-5 text-gray-600">Your feedback is very impotant to us</p>
+            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Suggestion</h2>
+            <p class="leading-relaxed mb-5 text-gray-600">Votre suggestion est tres importante pour nous</p>
             <div class="relative mb-4">
-                <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+                <label for="email" class="leading-7 text-sm text-gray-600">Votre Email</label>
                 <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
             <div class="relative mb-4">
-                <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+                <label for="message" class="leading-7 text-sm text-gray-600">Votre Message</label>
                 <textarea id="message" name="message" class="w-full bg-white rounded border border-gray-300 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
             </div>
             <button class="text-white bg-yellow-400 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-300 rounded text-lg">Submit</button>
@@ -84,9 +91,11 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline-block w-8 h-8 text-gray-400 mb-8" viewBox="0 0 975.036 975.036">
                 <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
             </svg>
-            <p class="leading-relaxed text-lg">Cake was there for you when no one else was. It was sweet and warm and took your mind away from the troubles of the world. Many literary greats, intellectuals, and celebrities have acknowledged the importance and beauty of this baked good. So we’ve collected a bunch of quotes that will remind you of the value of this sugary treat. They might even inspire you to bake one yourself.</p>
+            <p class="leading-relaxed text-lg">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem culpa doloribus eaque et molestiae, mollitia, obcaecati odit placeat quas quibusdam sed sit suscipit tenetur vitae voluptates! Et sapiente sunt temporibus!
+            </p>
             <span class="inline-block h-1 w-10 rounded bg-yellow-400 mt-8 mb-6"></span>
-            <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">Bakis lona</h2>
+            <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">John Doe</h2>
             <p class="text-gray-500">Product Designer</p>
         </div>
     </div>
@@ -97,11 +106,11 @@
 <footer class="text-gray-600 body-font">
     <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-            <img src="img/baker_logo.jpg" alt="logo" width="100px" height="100px">
-            <span class="ml-3 text-xl">Bakis Bakery</span>
+            <img src="{{ asset('img/logo.jpg') }}" alt="logo" width="100px" height="100px">
+            <span class="ml-3 text-xl">Prolux</span>
         </a>
-        <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2020 BakisBakery —
-            <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@bakisbakery</a>
+        <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+            © 2020 copyright - All right reserved
         </p>
         <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
             <a class="text-gray-500">

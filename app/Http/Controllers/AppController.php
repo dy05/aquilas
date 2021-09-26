@@ -19,7 +19,7 @@ class AppController extends Controller
 
     public function index(Request $request)
     {
-        return view('index', [
+        return view('welcome', [
             'products' => $this->productRepo->trendingProducts()
         ]);
     }
