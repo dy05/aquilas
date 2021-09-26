@@ -38,7 +38,7 @@
                     </div>
                     <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">{{ $product->name }}</h2>
                     <p class="leading-relaxed text-base">{{ $product->short_description }}</p>
-                    <a href="{{ route('order', ['id' => $product->id, 'type' => 'product'] }}" class="flex mx-auto mt-6 text-white bg-yellow-400 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-300 rounded">Click here</a>
+                    <a href="{{ route('order', ['id' => $product->id, 'type' => 'product']) }}" class="flex mx-auto mt-6 text-white bg-yellow-400 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-300 rounded">Click here</a>
                 </div>
             @empty
                 <div class="sm:w-1/2 mb-10 px-4">
