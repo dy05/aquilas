@@ -20,11 +20,11 @@ class CreateMaterialsTable extends Migration
             $table->string('photo')->nullable();
             $table->string('dimension')->nullable();
             $table->boolean('active')->default(1);
-            $table->timestamps();
             $table->foreignId('category_id')
                 ->constrained('material_categories')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

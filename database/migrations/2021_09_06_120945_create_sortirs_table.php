@@ -18,17 +18,17 @@ class CreateSortirsTable extends Migration
               $table->date('date');
             $table->integer('quantite_sortir');
             $table->integer('prix_total');
-             $table->unsignedBigInteger('idUser');
-             $table->unsignedBigInteger('idProduit');
+             $table->unsignedBigInteger('user_id');
+             $table->unsignedBigInteger('product_id');
              $table->unsignedBigInteger('idMaterielle');
               $table->boolean('active')->default(0);
             $table->timestamps();
-            $table->foreign('iduser')
+            $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-          $table->foreign('idProduit')
+          $table->foreign('product_id')
                     ->references('id')
                     ->on('produits')
                     ->onUpdate('cascade')

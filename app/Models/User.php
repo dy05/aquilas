@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property string $name
+ * @property string $surname
+ * @property string $full_name
+ */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -18,9 +21,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
         'password',
+        'phone_number',
+        'address',
+        'is_admin',
+        'password',
+        'active',
     ];
+
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -40,6 +51,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'full_name',
+    ];
+
+    public function getFullNameAttribute()
+    {
+        return join(' ', [$this->name, $this->surname]);
+    }
+
     public function orders()
     {
         return $this->hasMany(Order::class);

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-   
+
 @section('content')
 
 
@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-   
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <strong>Whoops!</strong> il ya eu un ploblem<br><br>
@@ -24,7 +24,7 @@
             </ul>
         </div>
     @endif
-  
+
     <form action="{{ route('commandes.update') }}" method="POST">
         @csrf
         @method('PUT')
@@ -34,8 +34,8 @@
 <div class="row container ml-5">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong> nom produit:</strong>
-   <select name="idProduit" class="form-select" aria-label="Disabled select example">
+                <strong> nom Product:</strong>
+   <select name="product_id" class="form-select" aria-label="Disabled select example">
                 <option selectedvalue="{{ $pr->id }}">{{ $pr->nom}}</option>
                 @foreach ($prs as $mat )
                 <option value="{{ $mat->id }}">{{ $mat->nom }}</option>
@@ -60,33 +60,33 @@
             <fieldset>
             <label> liste des peoduit</label><p></p>
             @foreach ($prs as $mat )
-            @foreach($commande->produit as $pro)           
-           
+            @foreach($commande->produit as $pro)
+
             @if($mat->id== $pro)
-                    {{$commande->GetproduitID($pro)}}
-               
-            @else 
+                    {{$commande->productID($pro)}}
+
+            @else
             <div>
                 <img src="{{ asset('img')}}/{{ $mat->photo }}" style="max-width:130px;margin-top: 20px" alt="">
-            <input type="checkbox" name="produit[]"value="{{ $mat->id }}">{{ $mat->nom }} 
-              
+            <input type="checkbox" name="produit[]"value="{{ $mat->id }}">{{ $mat->nom }}
+
             </div>
-      @endif 
-            
-       
+      @endif
+
+
            @endforeach
                   @endforeach
             </fieldset>
              </div>
         </div>
-           
 
-   
-        
+
+
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-   
+
     </form>
 @endsection

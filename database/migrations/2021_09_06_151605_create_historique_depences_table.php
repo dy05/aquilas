@@ -18,10 +18,10 @@ class CreateHistoriqueDepencesTable extends Migration
             $table->string('motif');
             $table->integer('prix');
             $table->timestamps();
-            $table->unsignedBigInteger('idUsers');
+            $table->unsignedBigInteger('user_ids');
               $table->boolean('active')->default(1);
 
-            $table->foreign('idUsers')
+            $table->foreign('user_ids')
                     ->references('id')
                     ->on('Users')
                     ->onUpdate('cascade')

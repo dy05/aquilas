@@ -66,7 +66,7 @@ class EntrerController extends Controller
           $entrer->date=now();
            $entrer->idMaterielle=$idMaterielle;
             $entrer->prix_total=$total;
-             $entrer->idUser=$user;
+             $entrer->user_id=$user;
         $entrer->save();
 
         $materielle= materielle::find($idMaterielle);
@@ -138,7 +138,7 @@ class EntrerController extends Controller
         $entrer->prix=$prix;
            $entrer->idMaterielle=$idMaterielle;
             $entrer->prix_total=$total;
-             $entrer->idUser=$user;
+             $entrer->user_id=$user;
         $entrer->save();
 
 

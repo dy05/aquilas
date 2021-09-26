@@ -1,5 +1,5 @@
 @extends('layouts.app')
-  
+
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -24,26 +24,26 @@
                {{ $commande->numero_bon_commande }}
             </div>
         </div>
-     
+
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>prix:</strong>
                 {{ $commande->Getclient->nom}}
             </div>
-        </div> 
+        </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>prix:</strong>
-               {{ $commande->Getproduit->nom}}
+               {{ $commande->product->nom}}
             </div>
         </div>
            <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-            <img src="{{ asset('img')}}/{{ $commande->GetProduit->photo }}" style="max-width:130px;margin-top: 20px" alt="">
+            <img src="{{ asset('img')}}/{{ $commande->product->photo }}" style="max-width:130px;margin-top: 20px" alt="">
 
             </div>
         </div>
-            <td>    
+            <td>
              @if($commande->produit)
                     <ul>
                     @foreach($commande->produit as $pro)
@@ -55,9 +55,9 @@
                 @else
                 vide
                     @endif
-                    
+
              </td>
-        
-       
+
+
     </div>
 @endsection

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\achat;
+use App\Models\Purchase;
 use App\Models\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +19,7 @@ class AchatController extends Controller
     public function index()
     {
 
-        $achates = achat::all()->where('active', true);
+        $achates = Purchase::all()->where('active', true);
 
         return view('achat.index', compact('achates'));
     }
@@ -50,7 +50,7 @@ class AchatController extends Controller
              'prix_total' => 'required',
              'verse' => 'required',
              'reste' => 'required',
-             'idUser' => 'required',
+             'user_id' => 'required',
              'idCommand' => 'required',
 
 
@@ -60,11 +60,11 @@ class AchatController extends Controller
 
 
 
-        $achat= new achat();
+        $achat= new Purchase();
 
         $achat->numero_bon_achat=time();
           $achat->date=now();
-            $achat->idProduit=$request->idProduit;
+            $achat->product_id=$request->product_id;
              $achat->idClient=$request->idClient;
              $achat->produit=$request->produit;
 
@@ -87,7 +87,7 @@ class AchatController extends Controller
     public function show($id)
     {
          $mats = materielle::all()->where('active', true);
-        $achat= achat::find($id);
+        $achat= Purchase::find($id);
         return view('achat.show', compact('achat', 'mats'));
     }
 
@@ -99,10 +99,10 @@ class AchatController extends Controller
      */
     public function edit($id)
     {
-        $achat= achat::find($id);
-        $pr= produit::find($achat->idProduit);
-        $prs = produit::all();
-        $cl = client::find($achat->idProduit);
+        $achat= Purchase::find($id);
+        $pr= Product::find($achat->product_id);
+        $prs = Product::all();
+        $cl = client::find($achat->product_id);
          $cls = client::all();
 
         return view('achat.edit', compact('achat', 'pr', 'prs', 'cl', 'cls'));
@@ -126,11 +126,11 @@ class AchatController extends Controller
             ]);
 
 
-         $achat= achat::find($request->id);
+         $achat= Purchase::find($request->id);
 
         $achat->numero_bon_achat=time();
           $achat->date=now();
-            $achat->idProduit=$request->idProduit;
+            $achat->product_id=$request->product_id;
              $achat->idClient=$request->idClient;
              // a verifier
                           $achat->produit=$request->produit;
@@ -149,7 +149,7 @@ class AchatController extends Controller
      */
     public function destroy($id)
     {
-        $achat= achat::find($id);
+        $achat= Purchase::find($id);
 
         $achat->delete();
 
@@ -159,7 +159,7 @@ class AchatController extends Controller
 
     public function termine($id)
     {
-        $achat= achat::find($id);
+        $achat= Purchase::find($id);
         $achat->termine=1;
            $achat->save();
         return redirect()->route('achats.index')

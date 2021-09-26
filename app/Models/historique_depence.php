@@ -11,10 +11,10 @@ class historique_depence extends Model
              protected $fillable = [
          'motif',
         'prix',
-          
+
              ];
              public function Getusers()
              {
-                  return $this->belongsTo(users::class, 'idUsers', 'id');
+                  return $this->belongsTo(users::class, 'user_ids', 'id');
              }
 }

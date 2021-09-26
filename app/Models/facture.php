@@ -20,10 +20,10 @@ class facture extends Model
 
                      public function Getuser()
                      {
-                         return $this->belongsTo(User::class, 'idUser', 'id');
+                         return $this->belongsTo(User::class, 'user_id', 'id');
                      }
                      public function GetAchat()
                      {
-                         return $this->belongsTo(achat::class, 'idAchat', 'id');
+                         return $this->belongsTo(Purchase::class, 'idAchat', 'id');
                      }
 }

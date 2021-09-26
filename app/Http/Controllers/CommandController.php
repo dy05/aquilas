@@ -22,7 +22,7 @@ class CommandController extends Controller
 
     public function create()
     {
-        $prs= produit::all()->where('active', true);
+        $prs= Product::all()->where('active', true);
         $cls= client::all()->where('active', true);
 
         return view('commands.create', compact('cls', 'prs'));
@@ -42,7 +42,7 @@ class CommandController extends Controller
         $command = new Command();
         $command->numero_bon_Command = time();
         $command->date = now();
-        $command->idProduit = $request->idProduit;
+        $command->product_id = $request->product_id;
         $command->idClient = $request->idClient;
         $command->produit = $request->produit;
         $command->dimention = $tes;
@@ -64,9 +64,9 @@ class CommandController extends Controller
     public function edit($id)
     {
         $command = Command::find($id);
-        $pr = produit::find($command->idProduit);
-        $prs = produit::all();
-        $cl = client::find($command->idProduit);
+        $pr = Product::find($command->product_id);
+        $prs = Product::all();
+        $cl = client::find($command->product_id);
         $cls = client::all();
 
         return view('commands.edit', compact('command', 'pr', 'prs', 'cl', 'cls'));
@@ -82,7 +82,7 @@ class CommandController extends Controller
         $command = Command::find($request->id);
         $command->numero_bon_commande = time();
         $command->date = now();
-        $command->idProduit = $request->idProduit;
+        $command->product_id = $request->product_id;
         $command->idClient = $request->idClient;
         // a verifier
         $command->produit = $request->produit;

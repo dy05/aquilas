@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class contrat extends Model
 {
     use HasFactory;
-     
-         
+
+
                   protected $fillable = [
          'payement',
         'numero',
@@ -17,9 +17,9 @@ class contrat extends Model
          'montant',
                   ];
 
-                  public function Getproduit()
+                  public function product()
                   {
-                      return $this->belongsTo(produit::class, 'idProduit', 'id');
+                      return $this->belongsTo(Product::class, 'product_id', 'id');
                   }
                   public function Getclient()
                   {

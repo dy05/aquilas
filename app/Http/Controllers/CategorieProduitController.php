@@ -15,7 +15,7 @@ class CategorieProduitController extends Controller
     public function index()
     {
 
-        $categorie_produites = categorie_produit::all();
+        $categorie_produites = categorie_Product::all();
 
         return view('categorie_produit.index', compact('categorie_produites'));
     }
@@ -55,7 +55,7 @@ class CategorieProduitController extends Controller
 
         $categorie_produit->save();
 
-    //    categorie_produit::create($request->all());
+    //    categorie_Product::create($request->all());
 
         return redirect()->route('categorie_produits.index')
                         ->with('success', ' created successfully.');
@@ -69,7 +69,7 @@ class CategorieProduitController extends Controller
      */
     public function show($id)
     {
-        $categorie_produit= categorie_produit::find($id);
+        $categorie_produit= categorie_Product::find($id);
         return view('categorie_produit.show', compact('categorie_produit'));
     }
 
@@ -81,7 +81,7 @@ class CategorieProduitController extends Controller
      */
     public function edit($id)
     {
-        $categorie_produit= categorie_produit::find($id);
+        $categorie_produit= categorie_Product::find($id);
         return view('categorie_produit.edit', compact('categorie_produit'));
     }
 
@@ -102,13 +102,13 @@ class CategorieProduitController extends Controller
         $nom=$request->nom;
          $description=$request->description;
 
-        $categorie_produit=categorie_produit::find($request->id);
+        $categorie_produit=categorie_Product::find($request->id);
         $categorie_produit->nom=$nom;
          $categorie_produit->description=$description;
 
         $categorie_produit->save();
 
-    //    categorie_produit::create($request->all());
+    //    categorie_Product::create($request->all());
 
         return redirect()->route('categorie_produits.index')
                         ->with('success', 'Post updated successfully');
@@ -122,7 +122,7 @@ class CategorieProduitController extends Controller
      */
     public function destroy($id)
     {
-        $categorie_produit= categorie_produit::find($id);
+        $categorie_produit= categorie_Product::find($id);
 
         $categorie_produit->delete();
 

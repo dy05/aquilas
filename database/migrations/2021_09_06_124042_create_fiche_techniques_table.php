@@ -24,11 +24,11 @@ class CreateFicheTechniquesTable extends Migration
               $table->integer('dimlarg')->nullable();
              $table->integer('jumbalong')->nullable();
               $table->integer('jumbalarg')->nullable();
-             $table->unsignedBigInteger('idProduit');
+             $table->unsignedBigInteger('product_id');
               $table->boolean('active')->default(0);
               $table->unsignedBigInteger('idMaterielle');
             $table->timestamps();
-            $table->foreign('idProduit')
+            $table->foreign('product_id')
                     ->references('id')
                     ->on('produits')
                     ->onUpdate('cascade')

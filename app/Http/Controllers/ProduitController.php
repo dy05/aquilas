@@ -16,7 +16,7 @@ class ProduitController extends Controller
     public function index()
     {
 
-        $produites = produit::all()->where('active', true);
+        $produites = Product::all()->where('active', true);
 
         return view('produit.index', compact('produites'));
     }
@@ -28,7 +28,7 @@ class ProduitController extends Controller
      */
     public function create()
     {
-        $cats = categorie_produit::all();
+        $cats = categorie_Product::all();
         return view('produit.create', compact('cats'));
     }
 
@@ -72,7 +72,7 @@ class ProduitController extends Controller
              $produit->photo=$photoName;
              $produit->save();
 
-            //    produit::create($request->all());
+            //    Product::create($request->all());
 
                 return redirect()->route('produits.index')
                         ->with('success', ' created successfully.');
@@ -94,7 +94,7 @@ class ProduitController extends Controller
              $produit->photo="a.png";
              $produit->save();
 
-            //    produit::create($request->all());
+            //    Product::create($request->all());
 
                 return redirect()->route('produits.index')
                         ->with('success', ' created successfully.');
@@ -109,8 +109,8 @@ class ProduitController extends Controller
      */
     public function show($id)
     {
-         $cats = categorie_produit::all();
-        $produit= produit::find($id);
+         $cats = categorie_Product::all();
+        $produit= Product::find($id);
         return view('produit.show', compact('produit', 'cats'));
     }
 
@@ -122,8 +122,8 @@ class ProduitController extends Controller
      */
     public function edit($id)
     {
-        $produit= produit::find($id);
-        $cats = categorie_produit::all();
+        $produit= Product::find($id);
+        $cats = categorie_Product::all();
         return view('produit.edit', compact('produit', 'cats'));
     }
 
@@ -158,7 +158,7 @@ class ProduitController extends Controller
 
 
 
-                $produit= produit::find($request->id);
+                $produit= Product::find($request->id);
                 $produit->nom=$nom;
                   $produit->idCategorie=$idCategorie;
                    $produit->description=$description;
@@ -166,7 +166,7 @@ class ProduitController extends Controller
              $produit->photo=$photoName;
              $produit->save();
 
-            //    produit::create($request->all());
+            //    Product::create($request->all());
 
                 return redirect()->route('produits.index')
                         ->with('success', 'Post updated successfully');
@@ -180,14 +180,14 @@ class ProduitController extends Controller
 
 
 
-                $produit= produit::find($request->id);
+                $produit= Product::find($request->id);
                 $produit->nom=$nom;
                   $produit->idCategorie=$idCategorie;
                    $produit->description=$description;
             $produit->prix_unitaire=$prix_unitaire;
                    //  $produit->photo="a.png";
              $produit->save();
-            //    produit::create($request->all());
+            //    Product::create($request->all());
 
                 return redirect()->route('produits.index')
                         ->with('success', 'Post updated successfully');
@@ -202,7 +202,7 @@ class ProduitController extends Controller
      */
     public function destroy($id)
     {
-        $produit= produit::find($id);
+        $produit= Product::find($id);
 
         $produit->delete();
 

@@ -18,11 +18,11 @@ class fiche_technique extends Model
               'dimlarg',
              'jumbalong',
               'jumbalarg',
-             'idProduit',];
+             'product_id',];
 
-     public function Getproduit()
+     public function product()
      {
-         return $this->belongsTo(produit::class, 'idProduit', 'id');
+         return $this->belongsTo(Product::class, 'product_id', 'id');
      }
      public function materielle()
      {
